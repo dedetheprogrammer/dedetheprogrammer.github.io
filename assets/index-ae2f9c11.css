@@ -1,7 +1,0 @@
-@font-face{font-family:Afacad;src:url(source/fonts/afacad/fonts/ttf/Afacad-Regular.ttf)}
-@font-face{font-family:Hardpixel;src:url(Hardpixel-0c1c5f92.OTF)}
-*,html,body{margin:0;padding:0}
-#renderer-container,#cover-container{position:absolute;width:100vw;height:100vh}
-#renderer-container{width:100vw;height:100vh;background-color:#000;z-index:1}
-#cover-container{width:100vw;height:100vh;z-index:2;color:#dadada;text-shadow:3px 2px 10px #000000;font-family:Hardpixel;display:flex;align-items:center;justify-content:center;flex-direction:column;transition-property:background-color;-webkit-transition-property:background-color;transition-duration:.3s;-webkit-transition-duration:.3s;transition-timing-function:ease-in-out;-webkit-transition-timing-function:ease-in-out}
-#tip-message{margin-top:30px;transition-property:opacity;-webkit-transition-property:opacity;transition-duration:.3s;-webkit-transition-duration:.3s;transition-timing-function:ease-in-out;-webkit-transition-timing-function:ease-in-out}
