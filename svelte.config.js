@@ -14,7 +14,8 @@ const config = {
 	extensions: [ '.svelte', '.md' ],
 	preprocess: [ vitePreprocess(), mdsvex(mdsvexOptions) ],
 	paths: {
-		base: '' | `https://dedetheprogrammer.github.io`
+		assets: 'https://dedetheprogrammer.github.io/dedetheprogrammer.github.io',
+		base: '' | '/dedetheprogrammer.github.io',
 	},
 	kit: {
 		// adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
