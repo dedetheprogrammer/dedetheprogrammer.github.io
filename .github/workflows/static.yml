@@ -35,8 +35,11 @@ jobs:
         run: |
           npm install
           npm run build
+      - name: Clean Build
+        run: |
+          shopt -s extglob
           mkdir tmp
-          mv * tmp
+          mv ./!(tmp) tmp
           mv tmp/docs/* .
           rm -rf tmp
       - name: Setup Pages
