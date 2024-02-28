@@ -37,7 +37,7 @@ jobs:
           npm run build
       - name: Clean Build
         run: |
-          shopt -s extglob
+          shopt -s extglob && shopt -s dotglob
           mkdir tmp
           mv ./!(tmp) tmp
           mv tmp/docs/* .
