@@ -6,6 +6,7 @@ categories:
   - sveltekit
   - svelte
 published: true
+cover: "bg7.jpg"
 ---
 
 <script>
