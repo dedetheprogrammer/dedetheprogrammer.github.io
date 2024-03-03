@@ -1,80 +1,48 @@
-// ==========================================================
-// Pa compilar la pagina y que coja todos los archivos de los
-// posts que si no los pongo en static no me los pilla
-// ==========================================================
-
-const exit_if = (error) => {
-    if (error) {
-        console.error(error)
-        process.exit(1)
+// Dependencies
+const { exec } = require("child_process")
+const fs       = require("fs-extra")
+const yargs    = require("yargs")
+// Move files to the static folder
+async function copy_to_static() {
+    let generated = [] 
+    const dirs = await fs.readdir("src/posts")
+    for (const dir of dirs) {
+        const assets = await fs.readdir(`src/posts/${dir}`)
+        console.log(dir, assets)
+        for (const asset of assets) {
+            if (asset.split('.').at(-1) !== "md") {
+                const dst = `static/${asset}`
+                await fs.copy(`src/posts/${dir}/${asset}`, dst)
+                console.log(`Copying '${dir}/${asset}' in the static folder. . .`)
+                generated.push(dst)    
+            }
+        }
     }
+    return generated
+}
+// Build the site and recover the original state of the static folder
+async function build_site(generated) {
+    const process = await exec("npm run build");
+    process.stdout.on("data", (data) => {
+        console.log(data)
+    })
+    process.stderr.on("data", (data) => {
+        console.log(data)
+    })
+    process.on("close", () => {
+        console.log("Site has been built!")
+        console.log("Cleaning source code. . .")
+        for (const file of generated) {
+            console.log(`Deleting ${file}. . .`)
+            fs.unlink(file)
+        }
+    })
+    return process.exitCode
 }
 
-const fs  = require("fs-extra")
-const src = "src/posts"
-const dst = "static1"
-fs.readdir(src, (error, dirs) => {
-    exit_if(error) // If error, bye bye
-    // Read each post dir
-    dirs.forEach(dir => {
-        dir_src = `${src}/${dir}`
-        console.log(dir_src)
-        fs.readdir(dir_src, (error, assets) => {
-            assets.forEach(asset => {
-                if (asset.split('.').at(-1) !== "md") {
-                    const asset_src = `${dir_src}/${asset}`
-                    console.log(asset_src)
-                }
-            })
-        })
+async function main() {
+    const generated = await copy_to_static()
+    const exit_code = await build_site(generated)
+}
 
-        //dir_src = `${src}/${dir}`
-        //fs.readdir(dir_src, (error, assets) => {
-        //    exit_if(error)
-        //    assets.forEach(asset => {
-        //        const asset_src = `${dir_src}/${asset}`
-        //        const asset_dst = `${dst}/${asset}`
-        //        if (asset.split('.').at(-1) !== "md") {
-        //            fs.copy(asset_src, asset_dst, error => exit_if(error))
-        //        }
-        //    })
-        //})
-    })
-})
-
-/*
-const { exec } = require("child_process")
-// === CONSTRUIR LA PAGINA ==================================
-exec("npm run build", (error, stdout, stderr) => {
-    exit_if(error) // If error, bye bye
-    console.log(stdout)
-    console.log(stderr)
-    // === MOVER LOS ASSETS =====================================
-    const fs  = require("fs-extra")
-    const src = "src/posts"
-    const dst = "docs"
-
-    fs.readdir(src, (error, posts) => {
-        exit_if(error) // If error, bye bye
-        // Read each post folders
-        posts.forEach(post => {
-            const post_src = `${src}/${post}`
-            const post_dst = `${dst}/${post}`
-            // Read the content of the current post folder
-            fs.readdir(post_src, (error, assets) => {
-                exit_if(error) // If error, bye bye
-                // Create a folder for the post folder assets in the build
-                fs.mkdir(post_dst, { recursive: true }, error => exit_if(error))
-                // Copy each asset that is not markdown
-                assets.forEach(asset => {
-                    const asset_src = `${post_src}/${asset}`
-                    const asset_dst = `${asset}` 
-                    if (asset.split('.').at(-1) !== "md") {
-                        fs.copy(asset_src, asset_dst, error => exit_if(error))
-                    }
-                })
-            })
-        })
-    })
-})
-*/
+main()
