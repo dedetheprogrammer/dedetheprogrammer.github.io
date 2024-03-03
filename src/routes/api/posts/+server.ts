@@ -1,5 +1,6 @@
 import { json } from '@sveltejs/kit'
 import type { Post } from '$lib/types'
+import { dev } from '$app/environment'
 
 
 async function getPosts() {
@@ -13,7 +14,9 @@ async function getPosts() {
 		if (file && typeof file === 'object' && 'metadata' in file && slug) {
 			const metadata = file.metadata as Omit<Post, 'slug'>
 			let post   = { ...metadata, slug } satisfies Post
-			post.cover = `/src/posts/${slug}/${post.cover}`
+			if (dev) {
+				post.cover = `/src/posts/${slug}/${post.cover}`
+			}
 			post.published && posts.push(post)
 		}
 	}
