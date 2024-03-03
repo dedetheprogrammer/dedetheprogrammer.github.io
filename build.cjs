@@ -30,7 +30,7 @@ async function build_site(generated) {
         console.log(data)
     })
     process.on("close", () => {
-        console.log("Site has been built!")
+        console.log("Site has been built!\n")
         console.log("Cleaning source code. . .")
         for (const file of generated) {
             console.log(`Deleting ${file}. . .`)
