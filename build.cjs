@@ -30,12 +30,14 @@ async function build_site(generated) {
         console.log(data)
     })
     process.on("close", () => {
-        console.log("Site has been built!\n")
         console.log("Cleaning source code. . .")
         for (const file of generated) {
             console.log(`Deleting ${file}. . .`)
             fs.unlink(file)
         }
+        console.log("\nSite has been built!")
+        console.log("\nTry to use npm run preview or just wait to Github to setup your new page")
+
     })
     return process.exitCode
 }
