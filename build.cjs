@@ -32,7 +32,7 @@ async function build_site(generated) {
     process.on("close", () => {
         console.log("Cleaning source code. . .")
         for (const file of generated) {
-            console.log(`Deleting ${file}. . .`)
+            console.log(`- Deleting ${file}. . .`)
             fs.unlink(file)
         }
         console.log("\nSite has been built!")
@@ -43,6 +43,7 @@ async function build_site(generated) {
 }
 
 async function main() {
+    console.log("\nBuilding site!")
     const generated = await copy_to_static()
     const exit_code = await build_site(generated)
 }
