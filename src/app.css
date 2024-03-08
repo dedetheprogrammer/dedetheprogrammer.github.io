@@ -1,9 +1,26 @@
 @import '@fontsource/manrope';
 @import '@fontsource/jetbrains-mono';
+@font-face {
+    font-family: 'Aileron';
+    src: url('$lib/fonts/Aileron-Black.woff2') format('woff2'),
+        url('$lib/fonts/Aileron-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Aileron';
+    src: url('$lib/fonts/Aileron-Regular.woff2') format('woff2'),
+        url('$lib/fonts/Aileron-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
 
 html {
 	/* font */
-	--font-sans: 'Manrope', sans-serif;
+	--font-sans: 'Aileron', sans-serif;
 	--font-mono: 'JetBrains Mono', monospace;
 
 	/* dark */
@@ -87,6 +104,11 @@ html {
 	--border: var(--border-light);
 }
 
+*, html, body {
+	margin: 0;
+	padding: 0;
+}
+
 html,
 body {
 	height: 100%;
@@ -97,6 +119,10 @@ html {
 	accent-color: var(--link);
 	background-image: var(--background);
 	background-attachment: fixed;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: "Aileron";
 }
 
 img {
