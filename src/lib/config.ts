@@ -1,5 +1,5 @@
 import { dev } from "$app/environment"
 
-export const title = "DEDE'S HUB"
-export const description = "Loco loco loco loco loco"
-export const url = dev ? "https://localhost:5173/" : '...';
+export const title = "El rincón de Dede"
+export const description = "Me cago en todo su puto pecho"
+export const url = dev ? "http://localhost:5173/" : "url"

@@ -1,179 +1,166 @@
 <script lang="ts">
+	import { formatDate } from '$lib/utils'
+	import * as config from '$lib/config'
 
-    //import Arrow from "../assets/arrow.png"
-    import Entry from "./entry.svelte"
-    export let data;
-
-    /* Banner */
-    const original = "Hi, I'm Dede, and this is what I do"
-    const shuffled = original;
-    /*
-    let active = Array.from({length: original.length}, _ => false);  
-    let state = "Scramble"
-    let index = 0;
-    let intervalId = [0, 0]
-    function randomChar() {
-        return String.fromCharCode(Math.floor((Math.random() * 300) + 1));
-    }
-    $: {
-        clearInterval(intervalId[0])
-        if (!active.every(v => v === true)) {
-            intervalId[0] = setInterval(() => {
-                let i = Math.floor(Math.random() * active.length)
-                while (active[i]) {
-                    i = Math.floor(Math.random() * active.length)
-                }
-                active[i] = true;
-            }, 200)
-        } else {
-            setTimeout(() => { state = "Descramble" }, 500);
-        }
-    }
-
-
-    $: {
-        clearInterval(intervalId[1])
-        if (state == "Scramble") {
-            intervalId[1] = setInterval(() => {
-                shuffled = ""
-                for (let i = 0; i < active.length; i++) {
-                    shuffled += (active[i]) ? 
-                    randomChar() :
-                    original.charAt(i)
-                }
-            }, 70)
-        } else if (state == "Descramble") {
-            intervalId[1] = setInterval(() => {
-                active[index] = false;
-                shuffled = original.substring(0, index)
-                for (let i = index; i < original.length; i++) {
-                    shuffled += randomChar()    
-                }
-                if (index++ === original.length) {
-                    index = 0;
-                    state = "Waiting"
-                }
-            }, 70)
-        } else {
-            setTimeout(() => { state = "Scramble"; }, 3000)
-        }
-    }*/
-
-    /* Entries portfolio */
-    let length: number;
-
-
+	export let data
 </script>
+
+<svelte:head>
+	<title>{config.title}</title>
+</svelte:head>
+
+<!-- Posts -->
+<!--div style="width:100%; height: 500px; background-color:darkkhaki; margin-bottom: 30px;">
+a
+</div-->
+<!--div class="tests">
+	{#each data.posts as post}
+		<div class="test">
+			<a href={post.slug} 
+				style="
+				width:350px;
+				height: 100%;
+				display:flex;
+				align-items:center;
+				justify-content: center;
+				margin:0;
+				padding:0;"
+			>
+				<div class="preview" style:background-image="url({post.cover})"/>
+			</a>
+			<div class="test-in">
+				<a href={post.slug} class="title">{post.title}</a>
+				<div class="date">{formatDate(post.date)}</div>
+				<div class="description">{post.description}</div>
+				<div class="tags">
+
+				</div>
+			</div>
+		</div>
+	{/each}
+</div-->
+
+
+
+<!--div style="width: 100%; height: 680px; background-color: #dddddd; display:flex; align-items:center; justify-content:center; color:black; margin-bottom: 50px;">
+ELDEN RIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIING
+</div-->
+<div style="width: 100%; display:flex; align-items:center; justify-content:center;">
+	<div style="width:calc(100% - 300px);">
+		{#each data.posts as post}
+			<div style="width:100%; height:230px; margin-bottom:20px; display:flex;">
+
+				<div style="width: 370px; height: 100%; padding: 15px 0px;">
+					<a href={post.slug}>
+						<div class="post-cover" style="background-image:url({post.cover})" />
+					</a>
+				</div>
+
+				<div style="width:calc(100% - 220px); height: 100%; padding: 25px; ">
+					<div style="width:100%; height:20px; margin-bottom: 5px; display:flex; align-items:center; font-size: 14px; font-weight:100; color: #eeeeee;">{formatDate(post.date)}</div>
+					<div style="width:100%; min-height:35px; display:flex; font-size:17px; letter-spacing: 0.5px; font-weight:bolder; align-items:center; color: #eeeeee;">
+						<a href={post.slug}>{post.title}</a>
+					</div>
+					<div style="width:100%; font-size:17px; letter-spacing: 0.5px; color: #eeeeee;">{post.description}</div>
+				</div>
+			</div>
+		{/each}
+	</div>
+	<div style="width:400px; background-color: #bbbbbb; padding: 15px">
+		<div style="width:100%; background-color: #aaaaaa"></div>
+	</div>
+</div>
 
 <style>
 
-    :root {
-        --content-margin: 200px;
-        --welcome-height: 400px;
-        --n-entries-x: 3;
-        --n-entries-y: 4.5;
-    }
+	.post-cover {
+		width:100%;
+		height:100%; 
+		background-position: center center;
+		background-size: cover;
+		border: solid 7px black;
+		border-radius: 10px;
+		transition: border 0.3s ease-in-out;
+		transition: transform 0.4s ease-in-out;
+	}
+	.post-cover:hover {
+		border: solid 7px white;
+		transform: scale(1.4) rotate(5deg)
+	}
 
-    /* HOME BANNER */
-    .home-banner {
-        --home-banner-height: 350px;
-        width: 100%;
-        height: var(--home-banner-height);
-        display: flex;
-    }
+	.tests {
+		margin: 0px 150px;
+		width: calc(100% - 300px);
+		
+	}
 
-    .home-banner-title {
-        width: 50%;
-        height: 100%;
-        display: flex;
-        align-items: center;
-    }
-    .home-banner-title h1 {
-        width: 100%;
-        margin-left: var(--content-margin);
-        font-size: 30px;
-        text-align: left;
-    }
-    /*
-    .arrow {
-        width: 50px;
-        height: 45px;
-        background-position: center center;
-        background-size: contain;
-        background-repeat: no-repeat;
-    }
-    */
+	.test {
+		width: 100%;
+		height: 250px;
+		display: flex;
+	}
 
-    .home-banner-socials {
-        width: 50%;
-        height: 100%;
-        display: flex;
-        align-items: start;
-        justify-content: end;
-    }
+	.test-in {
+		width: calc(100% - 60px - 350px);
+		height: 100%;
+		margin: 0px 30px;
+		background-color: aquamarine;
+		display: flex;
+		flex-direction: column;
+	}
 
-    .home-portfolio {
-        width: 100%;
-        height: fit-content;
-        display: flex;
-        justify-content: center;
-    }
+	.test:not(:last-child) {
+		margin-bottom: 30px;
+	}
 
-    .home-portfolio-posts {
-        width: calc(100% - var(--content-margin));
-        height: fit-content;
-        display: flex;
-        flex-wrap: wrap;
-    }
+	.preview {
+		width: 100%;
+		height: 90%;
+		margin: 0px;
+		padding: 0px;
+		background-color: #000000ff;
+		background-position: center center;
+		background-size: cover;
+		background-repeat: no-repeat;
+		border-radius: 25px;
+	}
 
-    @media screen and (min-width: 320px) and (max-width: 480px) {
-      :root {
-        --n-entries-x: 1;
-        --n-entries-y: 1.5;
-        --content-margin: 50px;
-        }
-    }
-  
-    @media screen and (min-width: 481px) and (max-width: 768px) {
-      :root {
-        --n-entries-x: 1;
-        --n-entries-y: 1.5;
-        --content-margin: 75px;
-      }
-    }
-  
-    @media screen and (min-width: 769px) and (max-width: 1024px) {
-      :root {
-        --n-entries-x: 2;
-        --n-entries-y: 3;
-        --content-margin: 100px;
-      }
-    }
-  
-    @media screen and (min-width: 1025px) and (max-width: 1200px) {
-      :root {
-        --n-entries-x: 3;
-        --n-entries-y: 4.5;
-        --content-margin: 125px;
-      }
-    }
 
+	.posts {
+		display: grid;
+		gap: 2rem;
+	}
+
+	.post {
+		width: 700px;
+		height: calc(100% - 60px);
+		margin: 30px;
+		background-color: black;
+		list-style-type: none;
+	}
+
+	.post:not(:last-child) {
+		border-bottom: 1px solid var(--border);
+		padding-bottom: var(--size-7);
+	}
+
+	.title {
+		width: 100%;
+		height: fit-content;
+		margin: 0;
+		font-size: var(--font-size-fluid-2);
+		text-transform: capitalize;
+		background-color: aqua;
+	}
+
+	.date {
+		color: var(--text-2);
+		background-color: rgb(0, 231, 231);
+	}
+
+	.description {
+		height: 40%;
+		margin-top: var(--size-3);
+		background-color: rgb(14, 141, 99);
+	}
 </style>
-
-<!-- Banner -->
-<div class="home-banner">
-  <div class="home-banner-title">
-      <h1>{shuffled} 👍⬇️</h1>
-  </div>
-  <div class="home-banner-socials">
-  
-  </div>
-</div>
-<!-- Portfolio -->
-<div class="home-portfolio">
-  <div class="home-portfolio-posts" style:--length="{length}px" bind:clientWidth={length}>
-      {#each data.posts as post}
-          <Entry color="#aaaaaa" title={post.portfolio_title} cover={post.cover} slug={post.slug} />
-      {/each}
-  </div>
-</div>
