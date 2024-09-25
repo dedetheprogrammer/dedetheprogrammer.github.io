@@ -1,44 +1,37 @@
 <script lang="ts">
-    import Header from "./header.svelte";
-    import Footer from "./footer.svelte";
-	import PageTransition from '$lib/components/transition.svelte'
-
-    import "open-props/style"
-    import "open-props/normalize"
-    import "open-props/buttons"
-    import "../app.css"
+    import Terminal from "$lib/terminal.svelte"
+    import Footer from "./footer.svelte"
+	import Header from "./header.svelte";
+	import PageTransition from "./transition.svelte";
 
     export let data
 </script>
 
-<div class="layout">
-    <Header />
-    <main>
-        <PageTransition url={data.url}>
+<main>
+    <PageTransition url={data.url}>
+        <Terminal /> 
+        <Header />
+        <div class="content">
             <slot />
-        </PageTransition>
-    </main>
-    <Footer />
-</div>
+        </div>
+        <Footer />
+    </PageTransition>
+</main>
 
 <style>
-    .layout {
-        height: 100%;
-        max-inline-size: 1400px;
-        display: grid;
-        grid-template-rows: auto 1fr auto;
-        margin-inline: auto;
-        padding-inline: var(--size-7);
-    }
-
     main {
-        padding-block: var(--size-9);
+        width: 100%;
+        height: 100%;
     }
 
-    @media (min-width: 1440px) {
-        .layout {
-            padding-inline: 0;
-        }
+    .content {
+        width: 100%;
+        height: 100%;
+        margin-top: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 
 </style>
