@@ -5,7 +5,7 @@
 
 <nav>
     <a href="/" class="title">
-        <b>Iguana, lagarto</b>
+        <b>{config.title}</b>
     </a>
     <!--ul class="links">
         <li>
@@ -20,7 +20,6 @@
     </ul-->
     <Toggle />
 </nav>
-
 
 <style>
     nav {
