@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html>
     <header>
-
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Portfolio de un estudiante de ingenieria y de cosas varias.">
+        <meta name="keywords" content="portfolio, animation, gamedeveloping, videogames, 3d, blender">
+        <meta name="author" content="Dede">
+        <meta property="og:title" content="Dedehub">
+        <meta property="og:description" content="Descripción de la página">
+        <meta property="og:image" content="images/3d_modeling_000/pod_progress_4.png">
+        <meta property="og:url" content="https://dedetheprogrammer.github.io">
+        <meta name="twitter:card" content="images/3d_modeling_000/pod_progress_4.png">
+        <meta name="twitter:title" content="Dedehub">
+        <meta name="twitter:description" content="Portfolio de Dede porque molo.">
+        <meta name="twitter:image" content="images/3d_modeling_000/pod_progress_4.png">
         <style>
             *, html, body {
                 margin: 0;
@@ -35,7 +47,7 @@
             }
 
             .main-body {
-                width: calc(100%);
+                width: 100%;
                 height: 100%;
             }
 
@@ -68,10 +80,56 @@
                 margin: 0px 0px 10px 0px;
             }
 
+            .multiple-images-container {
+                display: flex;
+            }
+
+            .multiple-images-3 {
+                width: calc(100% / 3 - 10px) !important;
+            }
+
             /* Estilos para dispositivos móviles grandes y tablets */
             /* @media only screen and (min-width: 481px) and (max-width: 768px) { */
             @media only screen and (max-width: 768px) {
+                body {
+                    margin: 0px 20px 20px 20px;
+                }
+
+                img {
+                    width: calc(100% - 4px);
+                    margin: 0px 2px 5px 2px;
+                    padding: 0;
+                }
+
+                .main-body-section-entry {
+                    display: flex;
+                    flex-direction: column;
+                    margin: 0px 0px 20px 0px;
+                }
+
+                .main-body-section-subtitle {
+                    width: fit-content;
+                    margin: 0px 0px 3px 0px;
+                    color: rgb(223, 224, 139);
+                }
+
+                .main-body-section-subtitle-description {
+                    font-style: italic;
+                    color: rgb(204, 204, 204);
+                    margin: 0px 0px 10px 0px;
+                    font-size: 14px;
+                }
+
+                .multiple-images-container {
+                    display: flex;
+                    flex-wrap: wrap;
+                }
+
+                .multiple-images-3 {
+                    width: 100%;
+                }
                 
+
             }
 
 
@@ -93,10 +151,10 @@
                     <p  class="main-body-section-subtitle-description">
                         A character practice based on Jojo's Bizarre Adventure character Kars.
                     </p>
-                    <div style="display:flex;">
-                        <img style="width: calc(100% / 3 - 10px)" src="images/traditional_art_000/Kars_4.jpg" />
-                        <img style="width: calc(100% / 3 - 10px)" src="images/traditional_art_000/Kars_2-min.png" />
-                        <img style="width: calc(100% / 3 - 10px)" src="images/traditional_art_000/Kars_3-min.png" />
+                    <div class="multiple-images-container">
+                        <img class="multiple-images-3" src="images/traditional_art_000/Kars_4.jpg" />
+                        <img class="multiple-images-3" src="images/traditional_art_000/Kars_2-min.png" />
+                        <img class="multiple-images-3" src="images/traditional_art_000/Kars_3-min.png" />
                     </div>
                 </div>
                 <div class="main-body-section-entry">
