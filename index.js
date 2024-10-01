@@ -44,13 +44,13 @@ const tips = [
     "PLAY OUTERWILDS RIGHT NOW!"
 ]
 const tip       = document.getElementById("tip");
+tip.textContent = tips[Math.floor(Math.random() * tips.length)]; // Cambia el contenido
 const tipChange = () => {
     tip.classList.add("fade-out"); // Inicia la desaparición
     setTimeout(() => {
         tip.textContent = tips[Math.floor(Math.random() * tips.length)]; // Cambia el contenido
         tip.classList.remove("fade-out"); // Remueve la clase de fade-out
         tip.classList.add("fade-in"); // Aparece el nuevo contenido
-        
         setTimeout(() => {
             tip.classList.remove("fade-in"); // Opcionalmente, remover fade-in para permitir otro ciclo
         }, 1000); // Duración del fade-in (coincide con el tiempo de transición en CSS)
