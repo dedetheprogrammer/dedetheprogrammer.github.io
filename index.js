@@ -43,15 +43,25 @@ const tips = [
     "*Upcoming categories... Animation?",
     "PLAY OUTERWILDS RIGHT NOW!"
 ]
-const tip = document.getElementById("tip");
-tip.textContent = tips[Math.floor(Math.random() * tips.length)];
-setInterval(() => {
-    tip.textContent = tips[Math.floor(Math.random() * tips.length)];
-}, 10000)
+const tip       = document.getElementById("tip");
+const tipChange = () => {
+    tip.classList.add("fade-out"); // Inicia la desaparición
+    setTimeout(() => {
+        tip.textContent = tips[Math.floor(Math.random() * tips.length)]; // Cambia el contenido
+        tip.classList.remove("fade-out"); // Remueve la clase de fade-out
+        tip.classList.add("fade-in"); // Aparece el nuevo contenido
+        
+        setTimeout(() => {
+            tip.classList.remove("fade-in"); // Opcionalmente, remover fade-in para permitir otro ciclo
+        }, 1000); // Duración del fade-in (coincide con el tiempo de transición en CSS)
+        
+    }, 1500); // Duración del fade-out (coincide con el tiempo de transición en CSS)
+}
+setInterval(tipChange, 10000)
 
 // Escucha el evento de scroll
 window.addEventListener('scroll', () => {
-    // Si el usuario se desplaza más de 100px, muestra el botón
+    // Boton al inicio
     if (window.scrollY > 100) {
         buttonUp.setAttribute("style", "right: 15px");
         entries.forEach((element, index) => {
@@ -73,26 +83,33 @@ window.addEventListener('scroll', () => {
             }, index * 100);
         });
     }
-
+    // Indice
     if (window.scrollY >= sections[0].getBoundingClientRect().top + window.scrollY - 30 && this.window.scrollY < sections[1].getBoundingClientRect().top + window.scrollY - 30) {
         console.log("Hello");
         entries.forEach(element => {
             element.style.fontSize = "16px";
+            element.style.textDecoration = "none";
         });
         entries[0].style.fontSize = "20px";
+        entries[0].style.textDecoration = "underline";
     } else if (window.scrollY >= sections[1].getBoundingClientRect().top + window.scrollY - 30 && this.window.scrollY < sections[2].getBoundingClientRect().top + window.scrollY - 30) {
         entries.forEach(element => {
             element.style.fontSize = "16px";
+            element.style.textDecoration = "none";
         });
         entries[1].style.fontSize = "20px";
+        entries[1].style.textDecoration = "underline";
     } else if (window.scrollY >= sections[2].getBoundingClientRect().top + window.scrollY - 30 && this.window.scrollY) {
         entries.forEach(element => {
             element.style.fontSize = "16px";
+            element.style.textDecoration = "none";
         });
         entries[2].style.fontSize = "20px";
+        entries[2].style.textDecoration = "underline";
     } else {
         entries.forEach(element => {
             element.style.fontSize = "16px";
+            element.style.textDecoration = "none";
         });
     }
 });
@@ -105,6 +122,7 @@ buttonUp.addEventListener("click", () => {
     });
     entries.forEach(element => {
         element.style.fontSize = "16px";
+        element.style.textDecoration = "none";
     })
 });
 
