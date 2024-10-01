@@ -16,6 +16,10 @@
         <meta name="twitter:image" content="https://github.com/dedetheprogrammer/dedetheprogrammer.github.io/blob/main/images/3d_modeling_000/pod_progress_4.png">
         <style>
 
+            :root {
+                --body-margin: 250px;
+            }
+
             *, html, body {
                 margin: 0;
                 padding: 0;
@@ -25,7 +29,6 @@
 
             body {
                 background-color: black;
-                margin: 0px 250px 50px 250px;
             }
 
             img {
@@ -39,9 +42,33 @@
                 margin: 0px 5px 25px 5px;
             }
 
+            .main-header-background {
+                width: 100%;
+                height: 500px;
+                margin-bottom: 80px;
+                background-image: url("images/cover.jpg");
+                position: relative;
+            }
+
             .main-header {
                 width: 100%;
                 height: 500px;
+                position: absolute;
+                top: 0px;
+                background-color: #000000aa;
+            }
+
+            .main-header-content {
+                width: calc(100% - 2 * var(--body-margin));
+                height: 100%;
+                margin: 0px var(--body-margin) 0px var(--body-margin);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+
+            .main-header-titles {
+                height: 90%;
                 display: flex;
                 flex-direction: column;
                 justify-content: center;
@@ -76,8 +103,9 @@
             }
 
             .main-body {
-                width: 100%;
+                width: calc(100% - 2 * var(--body-margin));
                 height: 100%;
+                margin: 0px var(--body-margin) 50px var(--body-margin);
             }
 
             .main-body-section {
@@ -142,8 +170,8 @@
             /* Estilos para dispositivos móviles grandes y tablets */
             /* @media only screen and (min-width: 481px) and (max-width: 768px) { */
             @media only screen and (max-width: 768px) {
-                body {
-                    margin: 0px 20px 20px 20px;
+                :root {
+                    --body-margin: 20px;
                 }
 
                 img {
@@ -189,33 +217,37 @@
 
             /* Estilos para pantallas pequeñas de escritorio o tablets en horizontal */
             @media only screen and (min-width: 769px) and (max-width: 1024px) {
-                body {
-                    margin: 0px 80px 50px 80px;
+                :root {
+                    --body-margin: 50px;
                 }
             }
 
             /* Estilos para pantallas pequeñas de escritorio o tablets en horizontal */
-            @media only screen and (min-width: 769px) and (max-width: 1600px) {
-                body {
-                    margin: 0px 100px 50px 100px;
+            @media only screen and (min-width: 1025px) and (max-width: 1600px) {
+                :root {
+                    --body-margin: 100px;
                 }
             }
+
         </style>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     </header>
 
     <body>
+        <div class="main-header-background"></div>
         <div class="main-header">
-            <div style="height: 20%; display: flex; flex-direction: column; justify-content: center;">
-                <h1 style="width: fit-content;">Hi, I'm Dede and I'm doing magic 👍🏻⬇️</h1>
-                <h6 style="color:gray;">*Upcoming categories... Animation?</h6>
-            </div>
-            <div class="main-header-socials">
-                <div style="width: 200px; height: 100%; margin-top: 60px; display: flex; justify-content: space-between; align-items: center;">
-                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dedetheprogrammer"><i class="icon icon-github fa-2x fab fa-github"></i></a>
-                    <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/tu_vecino_dede"><i class="icon icon-instagram fa-2x fab fa-instagram"></i></a>
-                    <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/ddok"><i class="icon icon-linkedin fa-2x fab fa-linkedin"></i></a>
-                    <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/yosoydede"><i class="icon icon-twitter fa-2x fab fa-twitter"></i></a>
+            <div class="main-header-content">
+                <div class="main-header-titles">
+                    <h1 style="width: fit-content; margin-bottom: 5px; filter:drop-shadow(2px 2px 6px black)">Hi, I'm Dede and I'm doing magic 👍🏻⬇️</h1>
+                    <h6 id="tip" style="color:rgba(245, 241, 181, 0.76); filter:drop-shadow(2px 2px 6px black)">*Upcoming categories... Animation?</h6>
+                </div>
+                <div class="main-header-socials">
+                    <div style="width: 200px; height: 100%; display: flex; justify-content: space-between; align-items: center;">
+                        <a target="_blank" rel="noopener noreferrer" href="https://github.com/dedetheprogrammer"><i class="icon icon-github fa-2x fab fa-github"></i></a>
+                        <a target="_blank" rel="noopener noreferrer" href="https://www.instagram.com/tu_vecino_dede"><i class="icon icon-instagram fa-2x fab fa-instagram"></i></a>
+                        <a target="_blank" rel="noopener noreferrer" href="https://www.linkedin.com/in/ddok"><i class="icon icon-linkedin fa-2x fab fa-linkedin"></i></a>
+                        <a target="_blank" rel="noopener noreferrer" href="https://twitter.com/yosoydede"><i class="icon icon-twitter fa-2x fab fa-twitter"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -257,11 +289,11 @@
                     <p  class="main-body-section-subtitle-description">
                         A customized map based in Counter Strike or Valorant game likes. 
                     </p>
-                    <img src="images/3d_modeling_001/street-progress-1.jpg" />
+                    <img src="images/3d_modeling_001/street-progress-1.png" />
                     <img src="images/3d_modeling_001/street-progress-2.png" />
-                    <img src="images/3d_modeling_001/street-progress-3.jpg" />
-                    <img src="images/3d_modeling_001/street-progress-4.jpg" />
-                    <img src="images/3d_modeling_001/street-progress-5.jpg" />
+                    <img src="images/3d_modeling_001/street-progress-3.png" />
+                    <img src="images/3d_modeling_001/street-progress-4.png" />
+                    <img src="images/3d_modeling_001/street-progress-5.png" />
                     <img src="images/3d_modeling_001/street-render-1.png" />
                 </div>
                 <div class="main-body-section-entry">
