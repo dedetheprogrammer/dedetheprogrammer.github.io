@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+:root {
+	--page-header-navbar-height: 64px;
+	--page-header-body-left-margin-left: 300px;
+	--page-header-body-left-margin-right: 100px;
+	--page-x-margin-bottom: 96px;
+	--entries-margin-horizontal: 300px;
+	--entries-per-row: 3;
+	--entries-gap: 30px;
+	--entry-margin: 30px;
+}
+
+*, html, body {
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+	background-color: rgb(0, 0, 0);
+}
+
+a, div, h1, h2, h3, h4, h5, h6, p  {
+	font-family: 'VT323', monospace;
+}
+
+/* .prose :is(h2, h3, h4, h5, h6) {
+	margin-top: var(--size-8);
+	margin-bottom: var(--size-3);
+}
+
+.prose p:not(:is(h2, h3, h4, h5, h6) + p) {
+	margin-top: var(--size-7);
+}
+
+.prose :is(ul, ol) {
+	list-style-type: '🔥';
+	padding-left: var(--size-5);
+}
+
+.prose :is(ul, ol) li {
+	margin-block: var(--size-2);
+	padding-inline-start: var(--size-2);
+}
+
+.prose pre {
+	max-inline-size: 100%;
+	padding: 1rem;
+	border-radius: 8px;
+	tab-size: 2;
+} */
+
+.prose h2 {
+	margin-top: 32px;
+    font-size: 64px;
+	font-weight: 350;
+	color: white;
+}
+
+.prose p {
+	width: 100%;
+	font-size: 24px;
+	text-align: justify;
+	color: aquamarine;
+}
+
+.prose pre {
+	margin-top: 10px;
+}
