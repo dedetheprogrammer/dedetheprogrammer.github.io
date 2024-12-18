@@ -39,6 +39,7 @@ jobs:
         run: |
           shopt -s extglob && shopt -s dotglob
           mkdir tmp
+          ls
           mv ./!(tmp) tmp
           mv tmp/docs/* .
           rm -rf tmp
