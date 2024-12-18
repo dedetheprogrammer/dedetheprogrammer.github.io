@@ -35,21 +35,13 @@ jobs:
         run: |
           npm install
           node build.cjs
-      - name: Clean Build
-        run: |
-          shopt -s extglob && shopt -s dotglob
-          mkdir tmp
-          ls
-          mv ./!(tmp) tmp
-          mv tmp/docs/* .
-          rm -rf tmp
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
           # Upload entire repository
-          path: '.'
+          path: './build'
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
