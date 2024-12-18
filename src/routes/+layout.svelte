@@ -5,7 +5,6 @@
 </script>
 
 <style>
-
     #layout-header {
         width: 100%;
         height: var(--page-header-navbar-height);

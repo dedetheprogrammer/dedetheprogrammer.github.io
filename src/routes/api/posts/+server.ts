@@ -33,7 +33,6 @@ async function getPosts() {
 		}
 	}
     const n = 3
-    console.log(posts)
     if (posts.length < n) {
         return posts
     } else {

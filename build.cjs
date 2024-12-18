@@ -29,14 +29,18 @@ async function build_site(generated) {
     process.stderr.on("data", (data) => {
         console.log(data)
     })
-    process.on("close", () => {
+    process.on("close", (exitCode) => {
         console.log("Cleaning source code. . .")
         for (const file of generated) {
             console.log(`- Deleting ${file}. . .`)
             fs.unlink(file)
         }
-        console.log("\nSite has been built!")
-        console.log("\nTry to use npm run preview or just wait to Github to setup your new page")
+        if (exitCode === 0) {
+            console.log("\nSite has been built!")
+            console.log("\nTry to use npm run preview or just wait to Github to setup your new page")
+        } else {
+            console.log("\nSomething went wrong :(")
+        }
 
     })
     return process.exitCode
@@ -45,8 +49,7 @@ async function build_site(generated) {
 async function main() {
     console.log("\nBuilding site!")
     const generated = await copy_to_static()
-    const exit_code = await build_site(generated)
-    return exit_code
+    await build_site(generated)
 }
 
 main()
