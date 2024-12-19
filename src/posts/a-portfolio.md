@@ -18,6 +18,7 @@ cover: "/second-post/cover.png"
   import App3 from '$lib/components/app-3.svelte'
   import App4 from '$lib/components/app-4.svelte'
   import App5 from '$lib/components/app-5.svelte'
+  import Test from '$lib/components/test.svelte'
 </script>
 
 ## Primera versión del portfolio
@@ -40,6 +41,11 @@ Esto sería una animación de prueba para el fondo de la página:
 
 <App4 />
 
-## Otra más
+
+## Another one
 
 <App5 />
+
+## Y otro más
+
+<Test />

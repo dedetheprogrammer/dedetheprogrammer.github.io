@@ -13,4 +13,3 @@ cover: "/second-post/cover.png"
 
 Media inside the **static** folder is served from `/`.
 
-![Svelte](favicon.png)

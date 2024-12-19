@@ -1,9 +1,11 @@
 <script lang="ts">
     import { onMount } from 'svelte';
-    import * as THREE from 'three'
+    import * as THREE from 'three';
 
-    let playing: boolean = false
+    let playing: boolean = false;
+    let showing: boolean = true;
     let container: HTMLDivElement;
+
     onMount(() => {
         const {width, height} = container.getBoundingClientRect();
 
@@ -178,11 +180,19 @@
             requestAnimationFrame(animate);
         }
         animate();
-    })
+    });
     
 </script>
-
+  
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Quicksand&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap');
+
+    :root {
+        --app-header-height: 65px;
+        --app-footer-height: 60px;
+    }
 
     #app-container {
         width: 100%;
@@ -193,42 +203,221 @@
         border-radius: 10px;
     }
 
-    #play-button {
+    #app-background {
         width: 100%;
         height: 100%;
         position: absolute;
-        left: 0px;
-        top: 0px;
-        z-index: 2;
-        border: none;
-        border-radius: 10px; 
-        background-color: transparent;
-        cursor: pointer;
+    }
+
+    #app-foreground {
+        width: 100%;
+        height: 100%;
+        position: relative;
+    }
+
+    #app-header {
+        width: 100%;
+        height: 75px;
         display: flex;
-        align-items: start;
-        justify-content: start;
+        align-items: center;
+        justify-content: right;
+        background-color: white;
+    }
+
+    .app-header-option {
+        width: 80px;
+        height: 100%;
+        margin-right: 2px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #ababab;
+        padding: 10px;
+        font-size: 14px;
+        font-family: 'Lora', serif;
+    }
+
+    .app-header-option:hover {
+        cursor:pointer;
+        text-decoration: underline;
+        color: #000;
+    }
+
+    #app-body{
+        width: 100%;
+        height: calc(100% - var(--app-header-height) - var(--app-footer-height));
+        display: flex;
+        position: relative;
+        background-color: #47474783;
+    }
+
+    #app-body-left {
+        width: 50%;
+        height: 100%;
+        color: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #app-body-left-title {
+        width: 100%;
+        height: fit-content;
+        display: flex;
+        align-items: end;
+        filter: drop-shadow(black 5px 5px 5px)
+    }
+
+    #app-body-left-title p {
+        margin: 0 40px 0 80px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #ffffff;
+        font-family: 'Lora', serif;
+    }
+
+    #app-body-right {
+        width: 50%;
+        height: 100%;
+    }
+ 
+    #app-footer {
+        width: 100%;
+        height: var(--app-footer-height);
+        background-color: white;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    #app-footer-socials {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .icon {
+        width: fit-content;
+        height: fit-content;
+        color:black;
+        margin: 10px;
+    }
+    .icon:hover {
+        filter: drop-shadow(2px 2px 1px #b01212);
+    }
+
+    #app-menu {
+        width: 100px;
+        height: 30px;
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        border-radius: 5px;
+        display: flex;
+        filter: drop-shadow(black 2px 2px 3px)
+    }
+
+    #app-menu-play {
+        width: 50%;
+        border-top-left-radius: 5px;
+        border-bottom-left-radius: 5px;
+        border: none;
+        border: black 1px solid;
+        background: rgb(144,144,144);
+        background: radial-gradient(circle, rgba(144,144,144,1) 0%, rgba(120,120,120,1) 100%);
+    }
+    #app-menu-play:hover {
+        cursor: pointer;
+    }
+    #app-menu-play:active {
+        background-color: #ababab;
+        border-bottom: black 2px solid;
+        border-left: black 2px solid;
+        border-top: black 2px solid;
+    }
+
+    #app-menu-view {
+        width: 50%;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        border: none;
+        border: black 1px solid;
+        background: rgb(144,144,144);
+        background: radial-gradient(circle, rgba(144,144,144,1) 0%, rgba(120,120,120,1) 100%);
+    }
+    #app-menu-view:hover {
+        cursor: pointer;
+    }
+    #app-menu-view:active {
+        background-color: #ababab;
+        border-bottom: black 2px solid;
+        border-right: black 2px solid;
+        border-top: black 2px solid;
     }
 
     #play-button-play {
-        width: 50px;
-        height: 50px;
-        margin: 10px 0 0 10px;
+        width: 16px;
+        height: 16px;
+        margin-left: 1px;
         filter: drop-shadow(black 2px 2px 3px)
     }
 
     #play-button-pause {
-        width: 50px;
-        height: 50px;
-        margin: 11px 0 0 8px;
+        width: 20px;
+        height: 20px;
+        filter: drop-shadow(black 2px 2px 3px)
+    }
+
+    #view-button {
+        width: 20px;
+        height: 20px;
         filter: drop-shadow(black 2px 2px 3px)
     }
 
 </style>
 
-<div bind:this={container} id="app-container">
-    <button id="play-button" aria-label="Play" on:click={() => {
-        playing = !playing
-    }}>
-        <img src="{!playing ? "/a-portfolio/app-2/play.png" : "/a-portfolio/app-2/pause.png"}" id="{!playing ? "play-button-play" : "play-button-pause"}" alt="Button icon"/>
-    </button>
+<div id="app-container">
+    <div id="app-background" bind:this={container}></div>
+    {#if showing}
+        <div id="app-foreground">
+            <div id="app-header">
+                <div class="app-header-option">HOME</div>
+                <div class="app-header-option">PROJECTS</div>
+                <div class="app-header-option">ABOUT ME</div>
+            </div>
+            <div id="app-body">
+                <div id="app-body-left">
+                    <div id="app-body-left-title">
+                        <p>
+                            Where the ideas begin and be born. Engineer, content creator, artist, 3d modeler and more incoming...
+                        </p>
+                    </div>
+                </div>
+                <div id="app-body-right"></div>
+            </div>
+            <div id='app-footer'>
+                <div id="app-footer-socials">
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dedetheprogrammer" aria-label="Github"><i class="icon fab fa-2x fa-github"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dedetheprogrammer" aria-label="Instagram"><i class="icon fa-2x fab fa-instagram"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dedetheprogrammer" aria-label="Tiktok"><i class="icon fa-2x fab fa-tiktok"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dedetheprogrammer" aria-label="Twitch"><i class="icon fa-2x fab fa-twitch"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dedetheprogrammer" aria-label="Twitter"><i class="icon fa-2x fab fa-twitter"></i></a>
+                </div>
+            </div>
+        </div>
+    {/if}
+    <div id="app-menu">
+        <button id="app-menu-play" on:click={() => {
+            playing = !playing
+        }}>
+            <img src="{!playing ? "/a-portfolio/app-2/play.png" : "/a-portfolio/app-2/pause.png"}" id="{!playing ? "play-button-play" : "play-button-pause"}" alt="Button icon"/>
+        </button>
+        <button id="app-menu-view" on:click={() => {
+            showing = !showing
+        }}>
+            <img src="{!showing ? "/a-portfolio/app-5/show.png" : "/a-portfolio/app-5/hide.png"}" id="view-button" alt="Button icon"/>
+        </button>
+    </div>
 </div>
