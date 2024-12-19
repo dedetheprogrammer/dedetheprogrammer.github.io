@@ -1,14 +1,14 @@
 ---
-title: A portfolio
-description: First post.
-categories:
-  - sveltekit
-  - svelte
+title: My portfolio
+description: The evolution of my online portfolio through the years, starting with pure JavaScript, moving to React and Three.JS, and finally assembling in Svelte creating a Github Pages hosted static blog.
 published: true
 tags:
-  - A
-  - B
-  - C
+  - JavaScript
+  - React
+  - TypeScript
+  - Three.js
+  - Two.js
+  - Svelte
 cover: "/second-post/cover.png"
 ---
 
@@ -22,9 +22,9 @@ cover: "/second-post/cover.png"
   import Test from '$lib/components/test.svelte'
 </script>
 
-## Primera versión del portfolio
+## First sight of the portfolio
 
-Esta sería la primera versión del portfolio.
+This would be the first vision of the portfolio I started two years ago. At this point, it would only be built with pure <span style="color:#ef652a">HTML</span>, <span style="color:#33a9dc">CSS</span>, and <span style="color:#f3db1c">JavaScript</span>, and it wouldn't have any content, just a loading screen, as I was studying at the time and ended up putting the idea aside.
 
 <App1 />
 

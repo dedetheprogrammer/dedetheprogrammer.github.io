@@ -16,9 +16,8 @@ async function getPosts() {
             // const stats = fs.statSync(`${process.cwd()}${path}`.replace(/\\/g, '/'))
             // metadata["date"] = formatTimestamp(stats["mtimeMs"])
 			let post   = { ...metadata, slug } satisfies Post
-			if (dev) {
-				post.cover = `${post.cover}`
-			}
+			post.cover = `${post.cover}`
+            post.tags  = post.tags.sort()
 			post.published && posts.push(post)
 		}
 	}

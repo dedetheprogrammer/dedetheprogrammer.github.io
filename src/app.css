@@ -15,7 +15,7 @@ a, div, h1, h2, h3, h4, h5, h6, p  {
 
 a {
 	text-decoration: none;
-	color: aquamarine;
+	color: rgb(212, 241, 179);
 }
 
 a:hover {
@@ -61,7 +61,7 @@ a:hover {
 	margin-top: 5px;
 	font-size: 24px;
 	text-align: justify;
-	color: aquamarine;
+	color: rgb(212, 241, 179);
 }
 
 .prose pre {
@@ -80,8 +80,6 @@ a:hover {
 	.prose p {
 		width: 100%;
 		font-size: 20px;
-		text-align: justify;
-		color: aquamarine;
 	}
 
 }

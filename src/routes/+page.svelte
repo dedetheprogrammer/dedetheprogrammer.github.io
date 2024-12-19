@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tagBgColor, tagFgColor } from "$lib/utils"
     export let data
 
     let activeHeight : number = 0;
@@ -79,7 +80,7 @@
 
     #page-header-body-left p {
         font-size: 24px;
-        color: aquamarine;
+        color: rgb(212, 241, 179);
         text-align: justify;
     }
 
@@ -107,7 +108,7 @@
         width: calc((100% - var(--entries-gap) * 3) / var(--entries-per-row));
         margin: 0 0 var(--entries-gap) 0;
         display: inline-block;
-        background-color: aquamarine;
+        background-color: rgb(212, 241, 179);
         position: relative;
     }
 
@@ -122,7 +123,7 @@
         width: 100%;
         margin: 0 0 var(--entries-gap) 0;
         display: inline-block;
-        background-color: aquamarine;
+        background-color: rgb(212, 241, 179);
         position: relative;
     }
 
@@ -162,6 +163,16 @@
         border-radius: 3px;
     }
 
+    .entry-moreground h1{
+
+        font-size: 40px;
+    }
+
+
+    .entry-moreground p {
+        font-size: 20px;
+    }
+
     .entry-moreground {
         width: 100%;
         height: 100%;
@@ -185,7 +196,7 @@
         color: white;
     }
     .entry-moreground-body p {
-        color: aquamarine;
+        color: rgb(194, 221, 161);
     }
 
     .entry-tags {
@@ -197,7 +208,7 @@
     .entry-tag {
         background-color: rgb(0, 0, 0);
         min-width: 32px;
-        padding: 0 2px;
+        padding: 0 4px;
         border-radius: 2px;
         text-align: center;
         color: white;
@@ -519,7 +530,6 @@
 
     }
 
-
 </style>
 
 <div id="page-header">
@@ -557,7 +567,7 @@
                             <a href="{post.slug}"><h1>{post.title}</h1></a>
                             <div class="entry-tags">
                                 {#each post.tags as tag}
-                                    <div class="entry-tag">{tag}</div>
+                                    <div class="entry-tag" style="background-color:{tagBgColor(tag, '#000000')}; color:{tagFgColor(tag, '#ffffff')}">{tag}</div>
                                 {/each}
                             </div>
                             <p>{post.description}</p>

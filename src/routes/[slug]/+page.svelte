@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tagBgColor, tagFgColor } from "$lib/utils"
 	export let data
 </script>
 
@@ -23,6 +24,13 @@
 		color: white;
 	}
 
+	#description {
+		text-align: justify;
+		color: rgb(212, 241, 179);
+		font-size: 27px;
+		margin-bottom: 15px;
+	}
+
 	#tags {
 		margin-bottom: 30px;
 		display: flex;
@@ -32,7 +40,8 @@
 
     .tag {
         background-color: aquamarine;
-        width: 72px;
+        min-width: 72px;
+		padding: 0 10px;
 		height: 32px;
         border-radius: 4px;
         text-align: center;
@@ -119,12 +128,18 @@
   	<!-- Title -->
 	<h1 id="title">{data.meta.title}</h1>
 	<!-- <p style:color="white">Published at {data.meta.date}</p> -->
+
+	<p id="description">
+		{data.meta.description}
+	</p>
+
+
 	<img src="{data.meta.cover}" alt="Post cover">
 
   	<!-- Tags -->
 	<div id="tags">
 		{#each data.meta.tags as tag}
-			<span class="tag">{tag}</span>
+			<span class="tag" style="background-color:{tagBgColor(tag, '#000000')}; color:{tagFgColor(tag, '#ffffff')}" >{tag}</span>
 		{/each}
 	</div>
 

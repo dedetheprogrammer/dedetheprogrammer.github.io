@@ -34,7 +34,7 @@
         color: rgb(92, 131, 118);
     }
     .layout-header-option:hover {
-        color: aquamarine;
+        color: rgb(212, 241, 179);
     }
 
     /* #layout-footer {
