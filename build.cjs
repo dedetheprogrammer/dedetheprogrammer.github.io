@@ -49,7 +49,7 @@ async function build_site(generated) {
 async function main() {
     console.log("\nBuilding site!")
     const generated = await copy_to_static()
-    await build_site(generated)
+    return await build_site(generated)
 }
 
-main()
+return main()

@@ -31,7 +31,7 @@
         position: relative;
         width: 100%;
         height: 100%;
-        background-image: url("/src/2.png");
+        background-image: url("/background.png");
         background-position: center center;
         background-size: cover;
     }
@@ -182,12 +182,25 @@
 
     .entry-tag {
         background-color: rgb(0, 0, 0);
-        width: 32px;
+        min-width: 32px;
+        padding: 0 2px;
         border-radius: 2px;
         text-align: center;
         color: white;
-        cursor: pointer;
     }
+
+    a {
+        text-decoration: none;
+        color: white;
+    }
+    a:hover {
+        text-decoration: line-through;
+    }
+
+    a h1 {
+        font-weight: normal;
+    }
+
 </style>
 
 <div id="page-header">
@@ -206,7 +219,7 @@
 </div>
 
 <div id="page-body">
-    <div id={data.posts.length < 3 ? "entries-less" : "entries-more"}>
+    <div id={data.posts.length <= 3 ? "entries-less" : "entries-more"}>
         {#each data.posts as post}
             <figure
                 class="entries-figure"

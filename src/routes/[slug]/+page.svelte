@@ -1,5 +1,4 @@
 <script lang="ts">
-	// import { formatDate } from '$lib/utils'
 	export let data
 </script>
 
@@ -9,12 +8,14 @@
 		/* background-color: aliceblue; */
 		min-height: 100vh;
 		max-inline-size: var(--size-content-3);
-		margin: 0 400px;
+		margin: 0px 400px 0px 400px;
 		padding: 100px;
 	}
 
 	article img {
 		width: 100%;
+		border-radius: 10px;
+		margin-bottom: 10px;
 	}
 
 	#title {
@@ -32,7 +33,7 @@
     }
 
     .tag {
-        background-color: rgb(0, 0, 0);
+        background-color: aquamarine;
         width: 72px;
 		height: 32px;
         border-radius: 4px;
@@ -40,8 +41,10 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-        color: white;
+        color: rgb(0, 0, 0);
+		font-size: 24px;
     }
+
 
 </style>
 
@@ -56,10 +59,10 @@
   	<!-- Title -->
 	<hgroup>
 		<h1 id="title">{data.meta.title}</h1>
-		<!-- <p>Published at {formatDate(data.meta.date)}</p> -->
+		<!-- <p style:color="white">Published at {data.meta.date}</p> -->
 	</hgroup>
 
-	<img src={data.meta.cover} alt="a">
+	<img src="{data.meta.cover}" alt="Post cover">
 
   	<!-- Tags -->
 	<div id="tags">

@@ -38,11 +38,11 @@
 
     #layout-footer {
         width: 100%;
-        height: 10px;
+        height: 50px;
         color: white;
         display: flex;
         align-items: end;
-        justify-content: center;
+        justify-content: start;
     }
 
 </style>
@@ -60,6 +60,6 @@
         </PageTransition>
     </main>
     <div id="layout-footer">
-        Created by Dede.
+        <span>Created by <a href="https://github.com/dedetheprogrammer">Dede</a>.</span>
     </div>
 </div>

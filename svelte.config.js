@@ -33,8 +33,7 @@ const config = {
             entries: await (async() => {
                 const folders = await fs.readdir(path.resolve('src/posts'), {withFileTypes: true})
                 const slugs   = folders
-                    .filter(dir => dir.isDirectory())
-                    .map(dir => `/${dir.name}`)
+                    .map(dir => `/${dir.name}`.replace(".md",""))
                 return slugs
             })()
         }
