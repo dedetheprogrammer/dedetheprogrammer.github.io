@@ -30,6 +30,7 @@
         "The Ctrl+Shift+º was an idea I had, not working for now.",
         "Don't listen to the others, I'm really working on this (for now)."
     ]
+
     // let quitLoadingScreen = false;
     let tip = tips[Math.floor(Math.random() * tips.length)];
     let tipRef: HTMLHeadingElement;
@@ -63,9 +64,22 @@
 
     // == ENTRIES
     let index: number = -1;
+    let width: number =  0
+    function handleResize() {
+        width = window.innerWidth;
+    }
 
     // == ON MOUNT
     onMount(() => {
+        width = window.innerWidth
+        window.addEventListener('resize', handleResize);
+
+        // Limpieza al destruir el componente
+        return () => {
+            window.removeEventListener('resize', handleResize);
+        };
+
+
         setInterval(() => {
             if (tipState === 'idle') {
                 setTimeout(() => {
@@ -89,6 +103,12 @@
             }
         }, 10000);
     });
+
+    let activeMenu : boolean = false;
+    let selectedOption: number = 0;
+    let optionMenu_1: HTMLDivElement;
+    let optionMenu_2: HTMLDivElement;
+    let optionMenu_3: HTMLDivElement;
 
 </script>
 
@@ -144,6 +164,7 @@
     #app-container {
         width: 100%;
         height: 500px;
+        margin-top: 10px;
         overflow: hidden;
         background-color: gray;
         position: relative;
@@ -184,7 +205,6 @@
         color: black;
         filter: drop-shadow(5px 5px 10px #000000);
         display: flex;
-
     }
 
     #app-foreground-header-logo {
@@ -301,6 +321,7 @@
     #app-footer {
         width: 100%;
         height: var(--footer-height);
+        margin-top: 10px;
         background-color: #ffffff;
         display: flex;
         align-items: center;
@@ -308,28 +329,138 @@
         filter: drop-shadow(5px -5px 10px #000000);
     }
 
-    .App-footer-body {
-        width: 100%;
-        height: 100%;
-        color:#494949;
-        font-family: "Afacad";
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
+    #app-foreground-header-wrapper {
+        width: var(--header-height);
+        height: var(--header-height);
+        display: none;
     }
 
-    /* .App-footer-body-copy {
-        margin-bottom: 4px;
-        font-size: 13px;
+    .app-foreground-header-wrapper-option {
+        width: 100%;
+        height: var(--header-height);
+        background-color: #eeeeee;
+
+        cursor: pointer;
+
+        position: absolute;
+        z-index: 3;
+        top: calc(-1 * var(--header-height));
+
+        display: flex;
+        align-items: center;
+
+        transition: all 0.25s ease-in-out;
+        -webkit-transition: all 0.25s ease-in-out;
     }
-    .App-footer-body-copy a {
-        text-decoration: none;
-        color:rgb(227, 186, 108);
+
+    .app-foreground-header-wrapper-option h3 {
+        color: black;
+        font-family: 'IBM Plex Mono', monospace;
+        margin-left: 15px;
     }
-    .App-footer-body-copy a:hover {
-        text-decoration: underline;
-        color:rgb(164, 115, 23);
-    } */
+
+    .wrapper-menu {
+        width: 30px;
+        height: 30px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        cursor: pointer;
+        transition: transform 330ms ease-out;
+    }
+
+    .wrapper-menu.open {
+        transform: rotate(-45deg);  
+    }
+
+    .line-menu {
+        background-color: #000000;
+        border-radius: 5px;
+        width: 100%;
+        height: 6px;
+    }
+
+    .line-menu.half {
+    width: 50%;
+    }
+
+    .line-menu.start {
+        transition: transform 330ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+        transform-origin: right;
+    }
+
+    .open .line-menu.start {
+        transform: rotate(-90deg) translateX(3px);
+    }
+
+    .line-menu.end {
+        align-self: flex-end;
+        transition: transform 330ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+        transform-origin: left;
+    }
+
+    .open .line-menu.end {
+        transform: rotate(-90deg) translateX(-3px);
+    }
+
+    @media (max-width: 480px) {
+        #app-foreground-header {
+            position: relative;
+            z-index: 4;
+            filter: none;
+        }
+
+        #app-foreground-header-logo {
+            display: none;
+        }
+
+        #app-coming-soon {
+            width: calc(100% - var(--header-height));
+            font-size: 26px;
+            margin-left: 10px;
+        }
+
+        #app-foreground {
+            position: absolute;
+            display: flex;
+            align-items: start;
+        }
+
+        #app-foreground-header-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #app-foreground-header-body h3 {
+            display: none;
+        }
+
+        .app-section-entries {
+            width: 100%;
+            height: 100%;
+            margin: 0 10px;
+            display: flex;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        .app-section-entry {
+            width: calc((100% - 2 * 10px) / 2);
+            height: calc(100% / 2);
+        }
+
+        .app-section-entry-foreground {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .app-section-entry-foreground h1 {
+            margin: 0;
+            text-align: center;
+        }
+    }
 
 </style>
 
@@ -349,67 +480,148 @@
                 <h1 id="app-coming-soon">COMING SOON</h1>
                 <h3 bind:this={tipRef} id="app-tip" class={`animated ${(tipState === 'fadeIn') ? 'fadeIn' : (tipState === 'fadeOut') ? 'fadeOut' : ''}`}>{tip}</h3>
             </div>
-        </div>
-        <div class="app-section">
-            <h1 class="app-section-title">Videogames</h1>
-            <div class="app-section-entries">
+            <div id="app-foreground-header-wrapper">
+                <!-- svelte-ignore a11y_click_events_have_key_events -->
                 <!-- svelte-ignore a11y_no_static_element_interactions -->
-                <div class="app-section-entry" on:mouseenter={() => { index = 0 }} on:mouseleave={() => { index = -1}}>
-                    <div class="app-section-entry-background {index === 0 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/entry-0.jpg)"></div>
-                    <div class="app-section-entry-foreground">
-                        <h1 style:opacity={index === 0 ? 1 : 0}>Builder (TBD)</h1>
-                    </div>
-                </div>
-                <!-- svelte-ignore a11y_no_static_element_interactions -->
-                <div class="app-section-entry" on:mouseenter={() => { index = 1 }} on:mouseleave={() => { index = -1}}>
-                    <div class="app-section-entry-background {index === 1 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/entry-1.jpg)"></div>
-                    <div class="app-section-entry-foreground">
-                        <h1 style:opacity={index === 1 ? 1 : 0}>DEngine</h1>
-                    </div>
-                </div>
-                <!-- svelte-ignore a11y_no_static_element_interactions -->
-                <div class="app-section-entry" on:mouseenter={() => { index = 2 }} on:mouseleave={() => { index = -1}}>
-                    <div class="app-section-entry-background {index === 2 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/entry-2.gif)"></div>
-                    <div class="app-section-entry-foreground">
-                        <h1 style:opacity={index === 2 ? 1 : 0}>Exorcism Needed</h1>
-                    </div>
-                </div>
-                <!-- svelte-ignore a11y_no_static_element_interactions -->
-                <div class="app-section-entry" on:mouseenter={() => { index = 3 }} on:mouseleave={() => { index = -1}}>
-                    <div class="app-section-entry-background {index === 3 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/placeholder.gif)"></div>
-                    <div class="app-section-entry-foreground">
-                        <h1 style:opacity={index === 3 ? 1 : 0}>WIP</h1>
-                    </div>
+                <div class='wrapper-menu {activeMenu ? 'open' : ''}' on:click={() => { activeMenu = !activeMenu }}>
+                    <div class="line-menu half start"></div>
+                    <div class="line-menu"></div>
+                    <div class="line-menu half end"></div>
                 </div>
             </div>
         </div>
-        <div class="app-section">
-            <h1 class="app-section-title">3d/Animation</h1>
-            <div class="app-section-entries">
-                <!-- svelte-ignore a11y_no_static_element_interactions -->
-                <div class="app-section-entry" on:mouseenter={() => { index = 4 }} on:mouseleave={() => { index = -1}}>
-                    <div class="app-section-entry-background {index === 4 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/entry-3.jpg)"></div>
-                    <div class="app-section-entry-foreground">
-                        <h1 style:opacity={index === 4 ? 1 : 0}>Pod 042</h1>
+        <!-- svelte-ignore a11y_click_events_have_key_events -->
+        <!-- svelte-ignore a11y_no_static_element_interactions -->
+        <div bind:this={optionMenu_1} style:top={activeMenu ?  '50px' : '-50px'} class="app-foreground-header-wrapper-option" on:click={() => { selectedOption = 0; activeMenu = false; }}>
+            <!-- <Icon_Dpad style={{ marginLeft:"15px" }} width="50" height="50" fill={(currentSection !== "VG") ? "#555555" : "rgb(164, 115, 23)"} /> -->
+            <h3>Videogames</h3>
+        </div>
+        <!-- svelte-ignore a11y_click_events_have_key_events -->
+        <!-- svelte-ignore a11y_no_static_element_interactions -->
+        <div bind:this={optionMenu_2} style:top={activeMenu ? '100px' : '-50px'} class="app-foreground-header-wrapper-option" on:click={() => { selectedOption = 1; activeMenu = false; }}>
+            <!-- <Icon_Cube style={{ marginLeft:"15px" }} width="50" height="50" stroke={(currentSection !== "3D") ? "#555555" : "rgb(164, 115, 23)"} /> -->
+            <h3>3d/Animation</h3>
+        </div>
+        {#if width > 480}
+            <div class="app-section">
+                <h1 class="app-section-title">Videogames</h1>
+                <div class="app-section-entries">
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
+                    <div class="app-section-entry" on:mouseenter={() => { index = 0 }} on:mouseleave={() => { index = -1}}>
+                        <div class="app-section-entry-background {index === 0 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/entry-0.jpg)"></div>
+                        <div class="app-section-entry-foreground">
+                            <h1 style:opacity={index === 0 ? 1 : 0}>Builder (TBD)</h1>
+                        </div>
                     </div>
-                </div>
-                <!-- svelte-ignore a11y_no_static_element_interactions -->
-                <div class="app-section-entry" on:mouseenter={() => { index = 5 }} on:mouseleave={() => { index = -1}}>
-                    <div class="app-section-entry-background {index === 5 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/entry-4.jpg)"></div>
-                    <div class="app-section-entry-foreground">
-                        <h1 style:opacity={index === 5 ? 1 : 0}>Path-tracer renderer</h1>
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
+                    <div class="app-section-entry" on:mouseenter={() => { index = 1 }} on:mouseleave={() => { index = -1}}>
+                        <div class="app-section-entry-background {index === 1 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/entry-1.jpg)"></div>
+                        <div class="app-section-entry-foreground">
+                            <h1 style:opacity={index === 1 ? 1 : 0}>DEngine</h1>
+                        </div>
                     </div>
-                </div>
-                <!-- svelte-ignore a11y_no_static_element_interactions -->
-                <div class="app-section-entry" on:mouseenter={() => { index = 6 }} on:mouseleave={() => { index = -1}}>
-                    <div class="app-section-entry-background {index === 6 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/placeholder.gif)"></div>
-                    <div class="app-section-entry-foreground">
-                        <h1 style:opacity={index === 6 ? 1 : 0}>WIP</h1>
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
+                    <div class="app-section-entry" on:mouseenter={() => { index = 2 }} on:mouseleave={() => { index = -1}}>
+                        <div class="app-section-entry-background {index === 2 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/entry-2.gif)"></div>
+                        <div class="app-section-entry-foreground">
+                            <h1 style:opacity={index === 2 ? 1 : 0}>Exorcism Needed</h1>
+                        </div>
+                    </div>
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
+                    <div class="app-section-entry" on:mouseenter={() => { index = 3 }} on:mouseleave={() => { index = -1}}>
+                        <div class="app-section-entry-background {index === 3 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/placeholder.gif)"></div>
+                        <div class="app-section-entry-foreground">
+                            <h1 style:opacity={index === 3 ? 1 : 0}>WIP</h1>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+            <div class="app-section">
+                <h1 class="app-section-title">3d/Animation</h1>
+                <div class="app-section-entries">
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
+                    <div class="app-section-entry" on:mouseenter={() => { index = 4 }} on:mouseleave={() => { index = -1}}>
+                        <div class="app-section-entry-background {index === 4 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/entry-3.jpg)"></div>
+                        <div class="app-section-entry-foreground">
+                            <h1 style:opacity={index === 4 ? 1 : 0}>Pod 042</h1>
+                        </div>
+                    </div>
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
+                    <div class="app-section-entry" on:mouseenter={() => { index = 5 }} on:mouseleave={() => { index = -1}}>
+                        <div class="app-section-entry-background {index === 5 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/entry-4.jpg)"></div>
+                        <div class="app-section-entry-foreground">
+                            <h1 style:opacity={index === 5 ? 1 : 0}>Path-tracer renderer</h1>
+                        </div>
+                    </div>
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
+                    <div class="app-section-entry" on:mouseenter={() => { index = 6 }} on:mouseleave={() => { index = -1}}>
+                        <div class="app-section-entry-background {index === 6 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/placeholder.gif)"></div>
+                        <div class="app-section-entry-foreground">
+                            <h1 style:opacity={index === 6 ? 1 : 0}>WIP</h1>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {:else}
+            {#if selectedOption === 0}
+                <h1 class="app-section-title">Videogames</h1>
+                <div class="app-section-entries">
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
+                    <div class="app-section-entry" on:mouseenter={() => { index = 0 }} on:mouseleave={() => { index = -1}}>
+                        <div class="app-section-entry-background {index === 0 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/entry-0.jpg)"></div>
+                        <div class="app-section-entry-foreground">
+                            <h1 style:opacity={index === 0 ? 1 : 0}>Builder (TBD)</h1>
+                        </div>
+                    </div>
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
+                    <div class="app-section-entry" on:mouseenter={() => { index = 1 }} on:mouseleave={() => { index = -1}}>
+                        <div class="app-section-entry-background {index === 1 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/entry-1.jpg)"></div>
+                        <div class="app-section-entry-foreground">
+                            <h1 style:opacity={index === 1 ? 1 : 0}>DEngine</h1>
+                        </div>
+                    </div>
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
+                    <div class="app-section-entry" on:mouseenter={() => { index = 2 }} on:mouseleave={() => { index = -1}}>
+                        <div class="app-section-entry-background {index === 2 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/entry-2.gif)"></div>
+                        <div class="app-section-entry-foreground">
+                            <h1 style:opacity={index === 2 ? 1 : 0}>Exorcism Needed</h1>
+                        </div>
+                    </div>
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
+                    <div class="app-section-entry" on:mouseenter={() => { index = 3 }} on:mouseleave={() => { index = -1}}>
+                        <div class="app-section-entry-background {index === 3 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/placeholder.gif)"></div>
+                        <div class="app-section-entry-foreground">
+                            <h1 style:opacity={index === 3 ? 1 : 0}>WIP</h1>
+                        </div>
+                    </div>
+                </div>
+            {:else if selectedOption === 1}
+                <h1 class="app-section-title">3d/Animation</h1>
+                <div class="app-section-entries">
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
+                    <div class="app-section-entry" on:mouseenter={() => { index = 4 }} on:mouseleave={() => { index = -1}}>
+                        <div class="app-section-entry-background {index === 4 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/entry-3.jpg)"></div>
+                        <div class="app-section-entry-foreground">
+                            <h1 style:opacity={index === 4 ? 1 : 0}>Pod 042</h1>
+                        </div>
+                    </div>
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
+                    <div class="app-section-entry" on:mouseenter={() => { index = 5 }} on:mouseleave={() => { index = -1}}>
+                        <div class="app-section-entry-background {index === 5 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/entry-4.jpg)"></div>
+                        <div class="app-section-entry-foreground">
+                            <h1 style:opacity={index === 5 ? 1 : 0}>Path-tracer renderer</h1>
+                        </div>
+                    </div>
+                    <!-- svelte-ignore a11y_no_static_element_interactions -->
+                    <div class="app-section-entry" on:mouseenter={() => { index = 6 }} on:mouseleave={() => { index = -1}}>
+                        <div class="app-section-entry-background {index === 6 ? "app-section-entry-background-hover" : ""}" style:background-image="url(/a-portfolio/app-4/placeholder.gif)"></div>
+                        <div class="app-section-entry-foreground">
+                            <h1 style:opacity={index === 6 ? 1 : 0}>WIP</h1>
+                        </div>
+                    </div>
+                </div>
+            {/if}
+        {/if}
         <div id="app-footer"></div>
     </div>
-
 </div>

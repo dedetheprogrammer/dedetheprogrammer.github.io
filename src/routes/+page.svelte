@@ -18,6 +18,17 @@
 
 <style>
 
+    :root {
+        --page-header-navbar-height: 64px;
+        --page-header-body-left-margin-left: 300px;
+        --page-header-body-left-margin-right: 100px;
+        --page-x-margin-bottom: 96px;
+        --entries-margin-horizontal: 300px;
+        --entries-per-row: 3;
+        --entries-gap: 30px;
+        --entry-margin: 30px;
+    }
+
     #page-header {
         width: 100%;
         height: 100vh;
@@ -165,13 +176,16 @@
     .entry-moreground.opacity {
         opacity: 1;
     }
-    
+
     .entry-moreground-body {
         padding: var(--entry-margin);
         display: flex;
         flex-direction: column;
         gap: 15px;
         color: white;
+    }
+    .entry-moreground-body p {
+        color: aquamarine;
     }
 
     .entry-tags {
@@ -201,6 +215,311 @@
         font-weight: normal;
     }
 
+    @media (max-width: 480px) {
+        /* Estilos para dispositivos muy pequeños */
+        :root {
+        	--entries-margin-horizontal: 0px;
+        }
+
+        #page-header-foreground {
+            position: absolute;
+            width: 100%;
+            height: calc(100% + var(--page-header-navbar-height));
+            /* margin-top: var(--page-header-navbar-height); */
+            background-color: rgba(0, 0, 0, 0.527);
+        }
+
+        #page-header {
+            margin: 0;
+        }
+
+        #page-header-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #page-header-body-left {
+            width: 100%;
+            height: 40%;
+            margin: 0;
+            display: flex;
+            justify-content: end;
+        }
+
+        #page-header-body-left h4 {
+            text-align: center;
+        }
+
+        #page-header-body-left p {
+            margin: 0 20px;
+            text-align: center;
+        }
+
+        #page-header-body-right {
+            width: 100%;
+            height: 60%;
+        }
+
+        #page-body {
+            margin: 0;
+        }
+
+        #entries-less, #entries-more {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+        }
+
+        #entries-more figure, #entries-less figure {
+            width: 100%;
+            margin: 0;
+        }
+
+        #entries-more figure p, #entries-less figure p {
+            width: 100%;
+            margin: 0;
+            font-size: 24px;
+        }
+
+    }
+
+    @media (max-width: 768px) {
+        /* Estilos para la mayoría de los teléfonos */
+        :root {
+        	--entries-margin-horizontal: 0px;
+        }
+
+        #page-header-foreground {
+            position: absolute;
+            width: 100%;
+            height: calc(100% + var(--page-header-navbar-height));
+            /* margin-top: var(--page-header-navbar-height); */
+            background-color: rgba(0, 0, 0, 0.527);
+        }
+
+        #page-header {
+            margin: 0;
+        }
+
+        #page-header-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #page-header-body-left {
+            width: 100%;
+            height: 40%;
+            margin: 0;
+            display: flex;
+            justify-content: end;
+        }
+        
+        #page-header-body-left h4 {
+            text-align: center;
+        }
+
+        #page-header-body-left p {
+            margin: 0 20px;
+            text-align: center;
+        }
+
+        #page-header-body-right {
+            width: 100%;
+            height: 60%;
+        }
+
+        #page-body {
+            margin: 0;
+        }
+
+        #entries-less, #entries-more {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0;
+        }
+
+        #entries-more figure, #entries-less figure {
+            width: 100%;
+            margin: 0;
+        }
+
+        #entries-more figure p, #entries-less figure p {
+            width: 100%;
+            margin: 0;
+            font-size: 24px;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+    /* Estilos para tabletas en modo vertical y horizontal */
+        /* Estilos para la mayoría de los teléfonos */
+        :root {
+        	--entries-margin-horizontal: 50px;
+        }
+
+        #page-header-foreground {
+            position: absolute;
+            width: 100%;
+            height: calc(100% + var(--page-header-navbar-height));
+            /* margin-top: var(--page-header-navbar-height); */
+            background-color: rgba(0, 0, 0, 0.527);
+        }
+
+        #page-header {
+            margin-bottom: 30px;
+        }
+
+        #page-header-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #page-header-body-left {
+            width: 100%;
+            height: 40%;
+            margin: 0;
+            display: flex;
+            justify-content: end;
+        }
+        
+        #page-header-body-left h4 {
+            text-align: center;
+            font-size: 76px;
+        }
+
+        #page-header-body-left p {
+            margin: 0 20px;
+            text-align: center;
+            font-size: 26px;
+        }
+
+        #page-header-body-right {
+            width: 100%;
+            height: 60%;
+        }
+
+        #page-body {
+            margin: 30px;
+        }
+
+        #entries-less, #entries-more {
+            width: 100%;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10;
+        }
+
+        #entries-more figure, #entries-less figure {
+            width: calc(100% - 100px); 
+            margin: 0;
+        }
+
+        #entries-more figure p, #entries-less figure p {
+            width: 100%;
+            margin: 0;
+            font-size: 24px;
+        }
+    }
+
+    @media (min-width: 1024px) and (max-width: 1280px) {
+        /* Estilos para dispositivos medianos */
+        :root {
+        	--entries-margin-horizontal: 20px;
+            --entries-gap: 20px;
+            --entries-per-row: 2;
+        }
+
+        #page-header-foreground {
+            position: absolute;
+            width: 100%;
+            height: calc(100% + var(--page-header-navbar-height));
+            /* margin-top: var(--page-header-navbar-height); */
+            background-color: rgba(0, 0, 0, 0.527);
+        }
+
+        #page-header {
+            margin-bottom: 30px;
+        }
+
+        #page-header-body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #page-header-body-left {
+            width: 100%;
+            height: 40%;
+            margin: 0;
+            display: flex;
+            justify-content: end;
+        }
+        
+        #page-header-body-left h4 {
+            text-align: center;
+            font-size: 76px;
+        }
+
+        #page-header-body-left p {
+            margin: 0 20px;
+            text-align: center;
+            font-size: 26px;
+        }
+
+        #page-header-body-right {
+            width: 100%;
+            height: 60%;
+        }
+
+        #page-body {
+            margin: 0;
+        }
+
+        #page-body {
+            margin-bottom: calc(var(--page-x-margin-bottom) - var(--entries-gap));
+        }
+
+        #entries-less {
+            width: calc(100% - 2 * var(--entries-margin-horizontal));
+            margin: 0 var(--entries-margin-horizontal);
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--entries-gap);
+        }
+
+        #entries-less figure {
+            width: calc((100% - var(--entries-gap) * 2) / var(--entries-per-row));
+            margin: 0 0 0 0;
+            display: inline-block;
+            background-color: aquamarine;
+            position: relative;
+        }
+
+        #entries-more {
+            width: calc(100% - 2 * var(--entries-margin-horizontal));
+            margin: 0 var(--entries-margin-horizontal);
+            column-count: var(--entries-per-row);
+            gap: var(--entries-gap);
+        }
+
+        #entries-more figure {
+            width: 100%;
+            margin: 0 0 var(--entries-gap) 0;
+            display: inline-block;
+            background-color: aquamarine;
+            position: relative;
+        }
+
+
+
+    }
+
+
 </style>
 
 <div id="page-header">
@@ -222,7 +541,6 @@
     <div id={data.posts.length <= 3 ? "entries-less" : "entries-more"}>
         {#each data.posts as post}
             <figure
-                class="entries-figure"
                 on:mouseover={(event) => showTest(activeSlug === post.slug ? activeHeight : event.currentTarget.offsetHeight , post.slug)} 
                 on:mouseleave={() => hideTest()}
                 on:focus={() => console.log("hi")}

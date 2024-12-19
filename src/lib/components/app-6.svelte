@@ -69,6 +69,7 @@
     #app-container {
         width: 100%;
         height: 500px;
+        margin-top: 10px;
         overflow: hidden;
         background-color: rgb(7, 7, 7);
         position: relative;
@@ -200,6 +201,50 @@
         position: relative;
         z-index: 2;
     }
+
+    @media (max-width: 480px) {
+        #app-header-navbar {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #app-header-navbar h3 {
+            margin: 0;
+        }
+
+        #app-header-navbar ul {
+            gap: 30px;
+        }
+
+        #app-header-navbar ul li {
+            margin: 5px 0 0 0;
+            list-style: none;
+        }
+
+        #app-header-navbar ul li p {
+            font-size: 15px;
+        }
+
+        #app-header-title {
+            width: 100%;
+            height: 40%;
+            margin-top: 30px;
+        }
+        
+        #app-header-title h1{
+            width: calc(100% - 40px);
+            margin: 20px 20px 0 20px;
+            text-align: center;
+        }
+
+        #app-header-socials {
+            display: none;
+        }
+    }
+
+
 
 </style>
 

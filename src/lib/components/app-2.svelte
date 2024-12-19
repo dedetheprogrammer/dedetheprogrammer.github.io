@@ -79,6 +79,18 @@
             line.stroke = 'white';
         });
 
+        const square = two.makeRectangle(
+            two.width / 2, // Coordenada x (centro del lienzo)
+            two.height / 2, // Coordenada y (centro del lienzo)
+            5, // Ancho
+            5  // Alto
+        );
+
+        // Personalizar el cuadrado
+        square.fill = '#ffffff'; // Color de relleno (tomato)
+        square.stroke = '#ffffff';  // Color de borde (negro)
+        square.linewidth = 4;    // Grosor del borde
+
         const update = () => {
             if (playing) {
                 // Dibujar el fondo negro
@@ -94,6 +106,17 @@
                     line.linewidth = 3;
                     line.stroke = 'white';
                 });
+                const square = two.makeRectangle(
+                    two.width / 2, // Coordenada x (centro del lienzo)
+                    two.height / 2, // Coordenada y (centro del lienzo)
+                    5, // Ancho
+                    5  // Alto
+                );
+
+                // Personalizar el cuadrado
+                square.fill = '#ffffff'; // Color de relleno (tomato)
+                square.stroke = '#ffffff';  // Color de borde (negro)
+                square.linewidth = 4;    // Grosor del borde
 
                 // Lógica para la plataforma
                 if (!spawned) {
@@ -154,9 +177,11 @@
 </script>
 
 <style>
+
     #page-container {
         width: 100%;
         height: 500px;
+        margin-top: 10px;
         overflow: hidden;
         border-radius: 10px;
     }

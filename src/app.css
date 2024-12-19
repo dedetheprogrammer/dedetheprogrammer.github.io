@@ -1,16 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-:root {
-	--page-header-navbar-height: 64px;
-	--page-header-body-left-margin-left: 300px;
-	--page-header-body-left-margin-right: 100px;
-	--page-x-margin-bottom: 96px;
-	--entries-margin-horizontal: 300px;
-	--entries-per-row: 3;
-	--entries-gap: 30px;
-	--entry-margin: 30px;
-}
-
 *, html, body {
     margin: 0px;
     padding: 0px;
@@ -63,11 +52,13 @@ a:hover {
 	margin-top: 32px;
     font-size: 64px;
 	font-weight: 350;
+	text-align: justify;
 	color: white;
 }
 
 .prose p {
 	width: 100%;
+	margin-top: 5px;
 	font-size: 24px;
 	text-align: justify;
 	color: aquamarine;
@@ -75,4 +66,22 @@ a:hover {
 
 .prose pre {
 	margin-top: 10px;
+}
+
+@media (max-width: 480px) {
+
+	.prose h2 {
+		margin-top: 32px;
+		font-size: 40px;
+		font-weight: 350;
+		color: white;
+	}
+
+	.prose p {
+		width: 100%;
+		font-size: 20px;
+		text-align: justify;
+		color: aquamarine;
+	}
+
 }

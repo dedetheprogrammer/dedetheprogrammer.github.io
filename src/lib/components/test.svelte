@@ -1,8 +1,8 @@
 <script lang="ts">
     import * as THREE from 'three';
     import { onMount } from 'svelte';
-    import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
-    import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+    // import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+    // import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 
     const tips = [
         "Chief is working hard on it. Patience.",
@@ -61,6 +61,7 @@
         const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize(width, height);
+        renderer.setClearColor("#040404");
         container.appendChild(renderer.domElement);
 
         const geometry = new THREE.BoxGeometry(1, 1, 1);
@@ -68,23 +69,23 @@
         const cube = new THREE.Mesh(geometry, material);
         scene.add(cube);
 
-        const gltfLoader = new GLTFLoader();
-        gltfLoader.load(
-            '/a-portfolio/app-5/TV.glb',
-            (object) => {
-                object.scene.traverse((child) => {
-                    if (child.isMesh) {
-                        console.log(child);
-                    }
-                });
-            },
-            (xhr) => {
-                console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
-            },
-            (error) => {
-                console.error(error);
-            }
-        );
+        // const gltfLoader = new GLTFLoader();
+        // gltfLoader.load(
+        //     '/a-portfolio/app-5/TV.glb',
+        //     (object) => {
+        //         object.scene.traverse((child) => {
+        //             if (child.isMesh) {
+        //                 console.log(child);
+        //             }
+        //         });
+        //     },
+        //     (xhr) => {
+        //         console.log((xhr.loaded / xhr.total) * 100 + '% loaded');
+        //     },
+        //     (error) => {
+        //         console.error(error);
+        //     }
+        // );
 
         camera.position.z = 5;
 
@@ -133,6 +134,7 @@
     #app-container {
         width: 100%;
         height: 500px;
+        margin-top: 10px;
         background-color: aliceblue;
         color:white;
         display: flex;

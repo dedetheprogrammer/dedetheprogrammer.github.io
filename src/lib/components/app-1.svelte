@@ -120,6 +120,7 @@
     #page-container {
         width: 100%;
         height: 500px;
+        margin-top: 10px;
         overflow: hidden;
         background-image: url("/a-portfolio/app-1/background.jpg");
         background-size: cover;
@@ -142,63 +143,92 @@
     #loading-screen h1,h2 {
         color: white;
         font-family: 'Quicksand', sans-serif;
+        text-align: center;
     }
 
     #message-coming-soon {
-        margin-top: 150px;
+        height: 80%;
+        display: flex;
+        align-items: end;
+        justify-content: center;
     }
 
     #message-tip {
+        height: 20%;
+        margin: 0px 30px;
         font-size: 20px;
         animation-duration: 10s;
     }
 
-    .lds-container {
+    #text-container {
+        height: 75%;
+    }
+
+    #lds-container {
         margin-top: 100px;
+        height: 25%;
     }
 
     .lds-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 4px;
-      width: 50px;
-      height: 50px;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 4px;
+        width: 50px;
+        height: 50px;
     }
     .lds-grid div {
-      width: 12px;
-      height: 12px;
-      background-color: #fff;
-      border-radius: 50%;
-      animation: lds-grid 1.2s linear infinite;
+        width: 12px;
+        height: 12px;
+        background-color: #fff;
+        border-radius: 50%;
+        animation: lds-grid 1.2s linear infinite;
     }
     .lds-grid div:nth-child(1) {
-      animation-delay: -0.4s;
+        animation-delay: -0.4s;
     }
     .lds-grid div:nth-child(2) {
-      animation-delay: -0.3s;
+        animation-delay: -0.3s;
     }
     .lds-grid div:nth-child(3) {
-      animation-delay: -0.2s;
+        animation-delay: -0.2s;
     }
     @keyframes lds-grid {
-      0% {
-        transform: scale(0);
-      }
-      50% {
-        transform: scale(1);
-      }
-      100% {
-        transform: scale(0);
-      }
+        0% {
+            transform: scale(0);
+        }
+        50% {
+            transform: scale(1);
+        }
+        100% {
+            transform: scale(0);
+        }
     }
 
-  </style>
-  
+    @media (max-width: 480px) {
+
+        #loading-screen h1 {
+            font-size: 30px;
+        }
+
+        #loading-screen h2 {
+            margin: 10px 10px 0 10px;
+            font-size: 15px;
+            color: white;
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
+        }
+
+    }
+
+</style>
+
 <div id="page-container">
     <div id="loading-screen">
-        <h1 id="message-coming-soon">COMING SOON</h1>
-        <h2 bind:this={tipRef} id='message-tip' class={`animated ${(tipState === 'fadeIn') ? 'fadeIn' : (tipState === 'fadeOut') ? 'fadeOut' : ''}`}>{tip}</h2>
-        <div class="lds-container">
+        <div id="text-container">
+            <h1 id="message-coming-soon">COMING SOON</h1>
+            <h2 bind:this={tipRef} id='message-tip' class={`animated ${(tipState === 'fadeIn') ? 'fadeIn' : (tipState === 'fadeOut') ? 'fadeOut' : ''}`}>{tip}</h2>
+        </div>
+        <div id="lds-container">
             <div class="lds-grid">
                 <div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div><div></div>
             </div>

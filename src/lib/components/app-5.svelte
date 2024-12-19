@@ -190,13 +190,14 @@
     @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400&display=swap');
 
     :root {
-        --app-header-height: 65px;
-        --app-footer-height: 60px;
+        --app-header-height: 60px;
+        --app-footer-height: 50px;
     }
 
     #app-container {
         width: 100%;
         height: 500px;
+        margin-top: 10px;
         overflow: hidden;
         background-color: gray;
         position: relative;
@@ -217,7 +218,7 @@
 
     #app-header {
         width: 100%;
-        height: 75px;
+        height: var(--app-header-height);
         display: flex;
         align-items: center;
         justify-content: right;
@@ -296,13 +297,17 @@
         display: flex;
         align-items: center;
         justify-content: center;
+        gap: 15px;
+    }
+    #app-footer-socials a {
+        width: 24px;
+        height: 24px;
     }
 
     .icon {
-        width: fit-content;
-        height: fit-content;
+        width: 24px;
+        height: 24px;
         color:black;
-        margin: 10px;
     }
     .icon:hover {
         filter: drop-shadow(2px 2px 1px #b01212);
@@ -376,6 +381,43 @@
         filter: drop-shadow(black 2px 2px 3px)
     }
 
+    @media (max-width: 480px) {
+
+        .app-header-option {
+            width: calc(100% / 3);
+            height: 100%;
+            margin: 0px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #ababab;
+            padding: 0px;
+            font-size: 14px;
+            font-family: 'Lora', serif;
+        }
+
+        #app-body-left {
+            width: 100%;
+            height: 100%;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #app-body-left-title p {
+            margin: 0 50px;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        #app-body-right {
+            display: none;
+        }
+
+    }
+
 </style>
 
 <div id="app-container">
@@ -399,11 +441,10 @@
             </div>
             <div id='app-footer'>
                 <div id="app-footer-socials">
-                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dedetheprogrammer" aria-label="Github"><i class="icon fab fa-2x fa-github"></i></a>
-                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dedetheprogrammer" aria-label="Instagram"><i class="icon fa-2x fab fa-instagram"></i></a>
-                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dedetheprogrammer" aria-label="Tiktok"><i class="icon fa-2x fab fa-tiktok"></i></a>
-                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dedetheprogrammer" aria-label="Twitch"><i class="icon fa-2x fab fa-twitch"></i></a>
-                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dedetheprogrammer" aria-label="Twitter"><i class="icon fa-2x fab fa-twitter"></i></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dedetheprogrammer" aria-label="Github"><img class="icon" src="/icons/github.png" alt="Github icon"/></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dedetheprogrammer" aria-label="Instagram"><img class="icon" src="/icons/instagram.png" alt="Instagram icon"/></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dedetheprogrammer" aria-label="Twitch"><img class="icon" src="/icons/twitch.png" alt="Instagram icon"/></a>
+                    <a target="_blank" rel="noopener noreferrer" href="https://github.com/dedetheprogrammer" aria-label="Twitter"><img class="icon" src="/icons/twitter.png" alt="Twitter icon"/></a>
                 </div>
             </div>
         </div>

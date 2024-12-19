@@ -12,6 +12,7 @@
     #app-container {
         width: 100%;
         height: 500px;
+        margin-top: 10px;
         background-color: aliceblue;
         color:white;
         display: flex;

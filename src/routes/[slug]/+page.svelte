@@ -5,10 +5,8 @@
 <style>
 
 	article {
-		/* background-color: aliceblue; */
 		min-height: 100vh;
-		max-inline-size: var(--size-content-3);
-		margin: 0px 400px 0px 400px;
+		margin: 0px 350px 0px 350px;
 		padding: 100px;
 	}
 
@@ -45,6 +43,68 @@
 		font-size: 24px;
     }
 
+	@media (max-width: 480px) {
+
+		article {
+			min-height: 100vh;
+			margin: 0;
+			padding: 60px 10px;
+		}
+
+		#title {
+			font-size: 72px;
+		}
+
+    }
+
+    @media (max-width: 768px) {
+		article {
+			min-height: 100vh;
+			margin: 0;
+			padding: 60px 10px;
+		}
+
+		#title {
+			font-size: 72px;
+		}
+	}
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+		article {
+			min-height: 100vh;
+			margin: 0 100px;
+			padding: 60px 10px;
+		}
+
+		#title {
+			font-size: 72px;
+		}
+	}
+
+	@media (min-width: 1024px) and (max-width: 1280px) {
+		article {
+			min-height: 100vh;
+			margin: 0 150px;
+			padding: 60px 10px;
+		}
+
+		#title {
+			font-size: 72px;
+		}
+    }
+
+	@media (min-width: 1281px) and (max-width: 1600px) {
+		article {
+			min-height: 100vh;
+			margin: 0 300px;
+			padding: 60px 10px;
+		}
+
+		#title {
+			font-size: 72px;
+		}
+	}
+
 
 </style>
 
@@ -57,11 +117,8 @@
 
 <article>
   	<!-- Title -->
-	<hgroup>
-		<h1 id="title">{data.meta.title}</h1>
-		<!-- <p style:color="white">Published at {data.meta.date}</p> -->
-	</hgroup>
-
+	<h1 id="title">{data.meta.title}</h1>
+	<!-- <p style:color="white">Published at {data.meta.date}</p> -->
 	<img src="{data.meta.cover}" alt="Post cover">
 
   	<!-- Tags -->

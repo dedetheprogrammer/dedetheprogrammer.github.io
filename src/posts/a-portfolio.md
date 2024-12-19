@@ -24,13 +24,13 @@ cover: "/second-post/cover.png"
 
 ## Primera versión del portfolio
 
-Esta sería la primera versión del portfolio:
+Esta sería la primera versión del portfolio.
 
 <App1 />
 
 ## Animación de prueba 
 
-Esto sería una animación de prueba para el fondo de la página:
+Esto sería una animación de prueba para el fondo de la página.
 
 <App2 />
 

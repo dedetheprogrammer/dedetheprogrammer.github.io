@@ -5,9 +5,10 @@
 </script>
 
 <style>
+
     #layout-header {
         width: 100%;
-        height: var(--page-header-navbar-height);
+        height: 64px;
         position: fixed;
         background-color: rgba(0, 0, 0, 0.342);
         backdrop-filter: blur(10px); /* Efecto desenfoque en el fondo */
@@ -15,7 +16,7 @@
         color: white;
         font-weight: 400px;
         font-size: 21px;
-        z-index: 2;
+        z-index: 10;
         display: flex;
         align-items: center;
         justify-content: right; 
@@ -36,13 +37,77 @@
         color: aquamarine;
     }
 
-    #layout-footer {
+    /* #layout-footer {
         width: 100%;
         height: 50px;
         color: white;
         display: flex;
         align-items: end;
-        justify-content: start;
+        justify-content: center;
+    } */
+
+    @media (max-width: 480px) {
+        #layout-header-options {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            gap: 30px;
+        }
+
+        #layout-header-options a {
+            font-size: 24px;
+        }
+
+    }
+
+    @media (max-width: 768px) {
+        /* Estilos para la mayoría de los teléfonos */
+        #layout-header-options {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            gap: 30px;
+        }
+
+        #layout-header-options a {
+            font-size: 24px;
+        }
+
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        #layout-header-options {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            gap: 30px;
+        }
+
+        #layout-header-options a {
+            font-size: 24px;
+        }
+
+    }
+
+    @media (min-width: 1024px) and (max-width: 1280px) {
+        #layout-header-options {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0;
+            gap: 30px;
+        }
+
+        #layout-header-options a {
+            font-size: 26px;
+        }
     }
 
 </style>
@@ -59,7 +124,7 @@
             <slot />
         </PageTransition>
     </main>
-    <div id="layout-footer">
+    <!-- <div id="layout-footer">
         <span>Created by <a href="https://github.com/dedetheprogrammer">Dede</a>.</span>
-    </div>
+    </div> -->
 </div>
