@@ -166,33 +166,42 @@
         z-index: 0;
     }
 
-    #play-button {
-        width: 100%;
-        height: 100%;
+    #app-menu {
+        width: 100px;
+        height: 30px;
         position: relative;
-        left: 0px;
-        top: 0px;
-        z-index: 2;
-        border: none;
-        border-radius: 10px; 
-        background-color: transparent;
-        cursor: pointer;
+        top: 10px;
+        left: 10px;
+        border-radius: 5px;
         display: flex;
-        align-items: start;
-        justify-content: start;
+        filter: drop-shadow(black 2px 2px 3px)
+    }
+    #app-menu-play {
+        width: 50%;
+        border-radius: 5px;
+        border: none;
+        border: black 1px solid;
+        background: rgb(144,144,144);
+        background: radial-gradient(circle, rgba(144,144,144,1) 0%, rgba(120,120,120,1) 100%);
+    }
+    #app-menu-play:hover {
+        cursor: pointer;
+    }
+    #app-menu-play:active {
+        background-color: #ababab;
+        border: black 2px solid;
     }
 
     #play-button-play {
-        width: 50px;
-        height: 50px;
-        margin: 10px 0 0 10px;
+        width: 16px;
+        height: 16px;
+        margin-left: 1px;
         filter: drop-shadow(black 2px 2px 3px)
     }
 
     #play-button-pause {
-        width: 50px;
-        height: 50px;
-        margin: 11px 0 0 8px;
+        width: 20px;
+        height: 20px;
         filter: drop-shadow(black 2px 2px 3px)
     }
 
@@ -200,11 +209,13 @@
   
 <div bind:this={container} id="page-container">
     <div id="playground" bind:this={playground}></div>
-    <button id="play-button" aria-label="Play" on:click={() => {
-        playing = !playing
-    }}>
-        <img src="{!playing ? "/a-portfolio/app-2/play.png" : "/a-portfolio/app-2/pause.png"}" id="{!playing ? "play-button-play" : "play-button-pause"}" alt="Button icon"/>
-    </button>
+    <div id="app-menu">
+        <button id="app-menu-play" on:click={() => {
+            playing = !playing
+        }}>
+            <img src="{!playing ? "/a-portfolio/app-2/play.png" : "/a-portfolio/app-2/pause.png"}" id="{!playing ? "play-button-play" : "play-button-pause"}" alt="Button icon"/>
+        </button>
+    </div>
 </div>
 
   

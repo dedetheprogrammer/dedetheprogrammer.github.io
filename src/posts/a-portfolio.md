@@ -18,6 +18,7 @@ cover: "/second-post/cover.png"
   import App3 from '$lib/components/app-3.svelte'
   import App4 from '$lib/components/app-4.svelte'
   import App5 from '$lib/components/app-5.svelte'
+  import App6 from '$lib/components/app-6.svelte'
   import Test from '$lib/components/test.svelte'
 </script>
 
@@ -37,15 +38,18 @@ Esto sería una animación de prueba para el fondo de la página:
 
 <App3 />
 
-## Siguiente versión
+## Y otro más
 
-<App4 />
-
+<Test />
 
 ## Another one
 
 <App5 />
 
-## Y otro más
+## Siguiente versión
 
-<Test />
+<App4 />
+
+## Primera versión del blog
+
+<App6 />
