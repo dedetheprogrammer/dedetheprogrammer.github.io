@@ -1,6 +1,7 @@
 import { mdsvex, escapeSvelte } from "mdsvex";
-import { createHighlighter } from 'shiki'
+import { getSingletonHighlighter } from 'shiki'
 import adapter from '@sveltejs/adapter-static';
+import { addCopyButton } from 'shiki-transformer-copy-button'
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte';
 import path from 'path'
 import fs from 'fs/promises';
@@ -13,12 +14,19 @@ const config = {
         extensions: [".md"],
         highlight: {
             highlighter: async (code, lang = 'text') => {
-                const highlighter = await createHighlighter({
-                    themes: ['poimandres'],
-                    langs: ['javascript', 'typescript']
+                const highlighter = await getSingletonHighlighter({
+                    themes: ['material-theme-darker'],
+                    langs: ['javascript', 'typescript', 'yaml']
                 })
-                await highlighter.loadLanguage('javascript', 'typescript')
-                const html = escapeSvelte(highlighter.codeToHtml(code, { lang, theme: 'poimandres' }))
+                await highlighter.loadLanguage('javascript', 'typescript', 'yaml')
+                await highlighter.loadTheme('material-theme-darker')
+                const html = escapeSvelte(highlighter.codeToHtml(code, { 
+                    lang,
+                    theme: 'material-theme-darker',
+                    transformers: [
+                        addCopyButton({toggle: 2000})
+                    ]
+                }))
                 return `{@html \`${html}\` }`
             }
         }

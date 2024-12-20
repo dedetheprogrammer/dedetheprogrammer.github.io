@@ -252,6 +252,7 @@
         color: rgb(164, 115, 23);
         font-weight: normal;
         font-size: 13px;
+        margin: 0;
         transition: opacity 0.3s ease-in-out;
     }
 
@@ -356,7 +357,8 @@
     .app-foreground-header-wrapper-option h3 {
         color: black;
         font-family: 'IBM Plex Mono', monospace;
-        margin-left: 15px;
+        margin: 0 0 0 15px;
+        font-size: 20px;
     }
 
     .wrapper-menu {
@@ -460,6 +462,7 @@
             margin: 0;
             text-align: center;
         }
+
     }
 
 </style>

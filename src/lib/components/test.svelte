@@ -61,7 +61,7 @@
         const camera = new THREE.PerspectiveCamera(75, width / height, 0.1, 1000);
         const renderer = new THREE.WebGLRenderer();
         renderer.setSize(width, height);
-        renderer.setClearColor("#040404");
+        renderer.setClearColor("#070707");
         container.appendChild(renderer.domElement);
 
         const geometry = new THREE.BoxGeometry(1, 1, 1);

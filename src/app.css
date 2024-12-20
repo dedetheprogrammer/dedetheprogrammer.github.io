@@ -15,38 +15,17 @@ a, div, h1, h2, h3, h4, h5, h6, p  {
 
 a {
 	text-decoration: none;
-	color: rgb(212, 241, 179);
+	color: rgb(92, 131, 118);
 }
 
 a:hover {
 	text-decoration: line-through;
+	color: rgb(190, 255, 115);
 }
 
-/* .prose :is(h2, h3, h4, h5, h6) {
-	margin-top: var(--size-8);
-	margin-bottom: var(--size-3);
+.prose img {
+	max-width: 100%;
 }
-
-.prose p:not(:is(h2, h3, h4, h5, h6) + p) {
-	margin-top: var(--size-7);
-}
-
-.prose :is(ul, ol) {
-	list-style-type: '🔥';
-	padding-left: var(--size-5);
-}
-
-.prose :is(ul, ol) li {
-	margin-block: var(--size-2);
-	padding-inline-start: var(--size-2);
-}
-
-.prose pre {
-	max-inline-size: 100%;
-	padding: 1rem;
-	border-radius: 8px;
-	tab-size: 2;
-} */
 
 .prose h2 {
 	margin-top: 32px;
@@ -56,17 +35,108 @@ a:hover {
 	color: white;
 }
 
-.prose p {
+.prose h3 {
+	margin-top: 32px;
+    font-size: 64px;
+	font-weight: 350;
+	text-align: justify;
+	color: rgb(202, 202, 202);
+}
+
+.prose p, li {
 	width: 100%;
-	margin-top: 5px;
+	margin-top: 15px;
 	font-size: 24px;
+	line-height: 25px;
 	text-align: justify;
 	color: rgb(212, 241, 179);
 }
 
 .prose pre {
+	border-radius: 5px;
+	padding: 20px;
+	overflow-x: auto;         /* Habilita desplazamiento horizontal si es necesario */
+    white-space: pre-wrap;    /* Permite que las líneas se ajusten automáticamente  */
 	margin-top: 10px;
 }
+
+.prose ul {
+	margin-left: 20px;
+}
+
+.prose li::marker {
+    list-style: point;
+	font-size: 1.3em;
+    color: white;
+}
+
+.prose p code, li code {
+	font-size: 17px;
+	background-color: rgb(77, 73, 65);
+	color: rgb(204, 166, 95);
+	padding: 1px 5px;
+	border-radius: 2px;
+}
+
+pre:has(code) {
+	position: relative;
+}
+
+pre button.copy {
+	position: absolute;
+	right: 16px;
+	top: 16px;
+	height: 28px;
+	width: 28px;
+	padding: 0;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 5px;
+	border:none;
+	background-color: transparent;
+	transition: all 0.2s ease-in;
+
+	& span {
+		width: 100%;
+		aspect-ratio: 1 / 1;
+		background-repeat: no-repeat;
+		background-position: center;
+		background-size: cover;
+	}
+  
+	& .ready {
+	  	background-image: url(/icons/copy.png);
+		width: 70%;
+	}
+  
+	& .success {
+		display: none;
+		background-image: url(/icons/copy-success.png); 
+		width: 65%;
+	}
+  
+	&.copied {
+		& .success {
+			display: block;
+		}
+	
+		& .ready {
+			display: none;
+		}
+	}
+}
+
+pre button.copy:hover {
+	cursor: pointer;
+	background-color: rgb(84, 83, 88);
+}
+
+pre button.copy:active {
+	cursor: pointer;
+	background-color: rgb(62, 60, 68);
+}
+
 
 @media (max-width: 480px) {
 

@@ -71,7 +71,7 @@
         height: 500px;
         margin-top: 10px;
         overflow: hidden;
-        background-color: rgb(7, 7, 7);
+        background-color: rgb(10, 10, 10);
         position: relative;
         border-radius: 10px;
     }
@@ -92,8 +92,10 @@
 
     #app-header-navbar h3 {
         font-family: 'Inter', system-ui, 'Avenir', Helvetica, Arial, sans-serif;
-        margin-left: 20px;
+        font-size: 20px;
+        margin: 0 0 0 20px;
         color: black;
+        font-weight: bold;
         filter: drop-shadow(2px 2px white);
     }
     #app-header-navbar h3:hover {
@@ -104,11 +106,19 @@
 
     #app-header-navbar ul {
         display: flex;
+        gap: 30px;
     }
 
     #app-header-navbar ul li {
-        margin-left: 35px;
+        margin-top: 0;
         color: white;
+        list-style: none;
+    }
+
+    #app-header-navbar ul li::marker {
+        list-style: point;
+        font-size: 1em;   /* Cambia el tamaño del marcador */
+        color: white;     /* Cambia el color del marcador */
     }
 
     #app-header-navbar ul li p {
@@ -211,11 +221,12 @@
         }
 
         #app-header-navbar h3 {
-            margin: 0;
+            margin: 40px 0 0 0;
         }
 
         #app-header-navbar ul {
             gap: 30px;
+            margin: 0;
         }
 
         #app-header-navbar ul li {
@@ -230,7 +241,7 @@
         #app-header-title {
             width: 100%;
             height: 40%;
-            margin-top: 30px;
+            margin-top: 20px;
         }
         
         #app-header-title h1{

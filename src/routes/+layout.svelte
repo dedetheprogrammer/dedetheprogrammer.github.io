@@ -34,7 +34,7 @@
         color: rgb(92, 131, 118);
     }
     .layout-header-option:hover {
-        color: rgb(212, 241, 179);
+        color: rgb(190, 255, 115);
     }
 
     /* #layout-footer {
