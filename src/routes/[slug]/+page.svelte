@@ -17,6 +17,10 @@
 		margin-bottom: 10px;
 	}
 
+	#go-back {
+		font-size: 23px;
+	}
+
 	#title {
 		margin-bottom: 10px;
 		font-size: 96px;
@@ -124,7 +128,9 @@
 	<meta property="og:title" content={data.meta.title} />
 </svelte:head>
 
+
 <article>
+	<a id="go-back" href="/">Back</a>
   	<!-- Title -->
 	<h1 id="title">{data.meta.title}</h1>
 	<!-- <p style:color="white">Published at {data.meta.date}</p> -->
@@ -139,7 +145,7 @@
   	<!-- Tags -->
 	<div id="tags">
 		{#each data.meta.tags as tag}
-			<span class="tag" style="background-color:{tagBgColor(tag, '#000000')}; color:{tagFgColor(tag, '#ffffff')}" >{tag}</span>
+			<span class="tag" style="background-color:{tagBgColor(tag, '#111111')}; color:{tagFgColor(tag, '#ffffff')}" >{tag}</span>
 		{/each}
 	</div>
 

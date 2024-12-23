@@ -9,7 +9,7 @@ tags:
   - Three.js
   - Two.js
   - Svelte
-cover: "/second-post/cover.png"
+cover: "/a-portfolio/cover.png"
 ---
 
 <script>
@@ -326,7 +326,8 @@ kit: {
 
 These are the future changes planned for the portfolio:
 
-- [ ] Remake the entries structure in the main page.
+- [x] Remake the entries structure in the main page.
+- [ ] Fix wrong page titles.
 - [ ] Add information in the main page.
 - [ ] Add a 'Comissions' page.
 - [ ] Add an 'About me' page.

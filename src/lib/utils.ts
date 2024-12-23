@@ -17,13 +17,17 @@ export function tagBgColor(name: string, color: string): string {
         return "#347cc4"
     } else if (["three.js", "3js", "three", "threejs"].includes(name)) {
         return "#ffffff"
+    } else if (["express.js", "expressjs", "express"].includes(name)) {
+        return "#ffffff"
     } else if (["react", "reactjs", "react.js"].includes(name)) {
         return "#242424"
     } else if (["twojs", "two.js", "two"].includes(name)) {
         return "#ffffff"
     } else if (["svelte", "svelte.js", "sveltejs"].includes(name)) {
         return "#fc3b04"
-    }else {
+    } else if (["pixi", "pixi.js", "pixijs"].includes(name)) {
+        return "#242424"
+    } else {
         return color
     }
 }
@@ -36,12 +40,16 @@ export function tagFgColor(name: string, color: string): string {
         return "#ffffff"
     } else if (["three.js", "3js", "three", "threejs"].includes(name)) {
         return "#000000"
+    } else if (["express.js", "expressjs", "express"].includes(name)) {
+       return "#000000"
     } else if (["react", "reactjs"].includes(name)) {
         return "#63d9f9"
     } else if (["twojs", "two.js", "two"].includes(name)) {
         return "#fc9493"
     } else if (["svelte", "svelte.js", "sveltejs"].includes(name)) {
         return "#ffffff"
+    }  else if (["pixi", "pixi.js", "pixijs"].includes(name)) {
+        return "#df2362"
     } else {
         return color
     }
