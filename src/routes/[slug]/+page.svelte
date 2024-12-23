@@ -1,6 +1,13 @@
 <script lang="ts">
+	import { onMount } from "svelte";
 	import { tagBgColor, tagFgColor } from "$lib/utils"
 	export let data
+
+	let headings : HTMLHeadingElement[];
+	onMount(() => {
+		headings = Array.from(document.querySelectorAll("h1, h2, h3, h4, h5, h6"))
+		console.log(headings)
+	})
 </script>
 
 <style>
@@ -55,6 +62,13 @@
         color: rgb(0, 0, 0);
 		font-size: 24px;
     }
+
+	#table-of-contents {
+		position: fixed;
+		top: 200px;
+		left: 200px;
+		color: white;
+	}
 
 	@media (max-width: 480px) {
 
@@ -118,7 +132,6 @@
 		}
 	}
 
-
 </style>
 
 <!-- SEO -->
@@ -128,17 +141,14 @@
 	<meta property="og:title" content={data.meta.title} />
 </svelte:head>
 
-
 <article>
 	<a id="go-back" href="/">Back</a>
   	<!-- Title -->
 	<h1 id="title">{data.meta.title}</h1>
 	<!-- <p style:color="white">Published at {data.meta.date}</p> -->
-
 	<p id="description">
 		{data.meta.description}
 	</p>
-
 
 	<img src="{data.meta.cover}" alt="Post cover">
 
@@ -154,3 +164,12 @@
 		<svelte:component this={data.content} />
 	</div>
 </article>
+<!-- <div id="table-of-contents">
+	<ul>
+		{#each headings as heading}
+		  <li>
+			<strong>{heading.textContent}</strong>
+		  </li>
+		{/each}
+	  </ul>
+</div> -->

@@ -133,6 +133,12 @@
         position: relative;
     }
 
+    .entry {
+        background-position: center center;
+        background-size: cover;
+        background-repeat: no-repeat;
+    }
+
     .entry-background {
         width: 100%;
         height: 100%;
@@ -581,11 +587,14 @@
 <div id="page-body">
     <div id={data.posts.length <= 3 ? "entries-less" : "entries-more"}>
         {#each data.posts as post}
+        <!-- svelte-ignore a11y_mouse_events_have_key_events -->
         <figure
+            class="entry"
             on:mouseover={() => showTest(post.slug)} 
             on:mouseleave={() => hideTest()}
-            on:focus={() => console.log("hi")}
         >
+            <!-- <div>Hola</div>
+            <div class="entry-background" class:opacity={1} style:background-image="url({post.cover})"></div> -->
             <div class="entry-background" class:opacity={activeSlug === post.slug} style:background-image="url({post.cover})"></div>
             <!-- Moreground: Shown on hover -->
             <div class="entry-foreground" class:opacity={activeSlug === post.slug}>
