@@ -65,6 +65,7 @@
         width: 50px;
         height: 50px;
         position: fixed;
+        z-index: 99;
         bottom: 15px;
         border-radius: 50%;
         border: none;
@@ -149,7 +150,6 @@
     }
 
 </style>
-
 
 <div class="layout">
     <div id="layout-header">

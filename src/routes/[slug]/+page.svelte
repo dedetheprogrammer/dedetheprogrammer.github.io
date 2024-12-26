@@ -63,12 +63,12 @@
 		font-size: 24px;
     }
 
-	#table-of-contents {
+	/* #table-of-contents {
 		position: fixed;
 		top: 200px;
 		left: 200px;
 		color: white;
-	}
+	} */
 
 	@media (max-width: 480px) {
 

@@ -20,7 +20,7 @@ export function tagBgColor(name: string, color: string): string {
     } else if (["express.js", "expressjs", "express"].includes(name)) {
         return "#ffffff"
     } else if (["react", "reactjs", "react.js"].includes(name)) {
-        return "#242424"
+        return "#252525"
     } else if (["twojs", "two.js", "two"].includes(name)) {
         return "#ffffff"
     } else if (["svelte", "svelte.js", "sveltejs"].includes(name)) {

@@ -28,19 +28,8 @@ async function getPosts() {
         const dateB = new Date(b.date).getTime();
         return dateB - dateA; // Descendente
     });
-    if (posts.length < n) {
-        return posts
-    } else {
-        let ordered_posts = []
-        for (let i = 0; i < n; i++) {
-            let j = 0
-            while ((j*3 + 1) < posts.length) {
-                ordered_posts.push(posts[j*3 + i])
-                j += 1
-            }
-        }
-        return ordered_posts
-    }
+
+    return posts;
 
 }
 

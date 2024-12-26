@@ -1,27 +1,39 @@
 <script lang="ts">
+    import { onMount } from "svelte";
 	import { tagBgColor, tagFgColor } from "$lib/utils"
     export let data
 
-    let activeHeight : number = 0;
-    let activeSlug   : string = ""; // Almacena el ID o 'slug' del post que está activo
-
+    let activeSocial: string = "";
+    function setSocial(social: string = "") {
+        activeSocial = social;
+    }
+    let activeSlug : string = ""; // Almacena el ID o 'slug' del post que está activo
     // Funciones para manejar los eventos de mouse
-    function showTest(slug: string) {
-        activeSlug   = slug; // Establece el post como activo, lo que hará que se muestre .test y se oculte .entry
+    function setSlug(slug: string = "") {
+        activeSlug = slug;
     }
 
-    function hideTest() {
-        activeHeight = 0;
-        activeSlug   = "";
-    }
+    // let entryActive: HTMLDivElement;
+    // let entryHidden: HTMLDivElement;
+
+    let activeEntries: HTMLDivElement[] = new Array(data.posts.length);
+    let hiddenEntries: HTMLDivElement[] = new Array(data.posts.length);
+
+    onMount(() => {
+        console.log(activeEntries)
+        console.log(hiddenEntries)
+    })
+
+
 </script>
 
 <style>
 
+    @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
     :root {
         --page-header-navbar-height: 64px;
-        --page-header-body-left-margin-left: 300px;
-        --page-header-body-left-margin-right: 100px;
+        --page-header-body-margin-horizontal: 100px;
         --page-x-margin-bottom: 96px;
         --entries-margin-horizontal: 300px;
         --entries-per-row: 3;
@@ -55,170 +67,217 @@
     }
 
     #page-header-body {
-        width: 100%;
+        width: calc(100% - 2 * var(--page-header-body-margin-horizontal));
         height: calc(100% - var(--page-header-navbar-height));
-        margin: var(--page-header-navbar-height) 0 0 0;
+        padding: var(--page-header-navbar-height) var(--page-header-body-margin-horizontal) 0 var(--page-header-body-margin-horizontal);
         display: flex;
+        flex-direction: column;
     }
 
     #page-header-body-left {
-        width: calc(50% - (var(--page-header-body-left-margin-left) + var(--page-header-body-left-margin-right)));
-        height: 100%;
-        margin-left: var(--page-header-body-left-margin-left);
-        margin-right: var(--page-header-body-left-margin-right);
+        width: 100%;
+        height: 40%;
         display: flex;
         flex-direction: column;
-        align-items: left;
+        align-items: center;
         justify-content: center;
     }
 
     #page-header-body-left h4 {
         font-size: 64px;
         font-weight: normal;
+        text-align: center;
     }
 
     #page-header-body-left p {
+        width: 100%;
         font-size: 24px;
         color: rgb(212, 241, 179);
-        text-align: justify;
+        text-align: center;
     }
 
     #page-header-body-right {
-        width: 50%;
-        height: 100%;
+        width: 100%;
+        height: 60%;
         display: flex;
         flex-direction: column;
         align-items: center;
-        justify-content: center;
+        justify-content: start;
         gap: 30px;
         font-size: 20px;
     }
 
+    #page-header-body-right p {
+        height: 20%;
+        text-align: center;
+    }
+
+    #socials {
+        width: 100%;
+        height: 80%;
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    #socials-cat {
+        aspect-ratio: 1/1; /* Hace que el alto sea igual al ancho */
+        height: 100%;
+        border-radius: 10px;
+        background-image: url("/working-cat.gif");
+        background-repeat: no-repeat;
+    }
+
+    #socials-body {
+        width: 200px;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    #socials-body a {
+        width: 100%;
+        height: calc(100% / 3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 20px;
+        border-radius: 10px;
+        text-decoration: none;
+        color: white;
+    }
+    #socials-body a:hover {
+        cursor: pointer;
+    }
+    .socials-body-icon {
+        width: 100px;
+        height: 100px;
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: 40%;
+        transition: background-position 0.2s ease-in-out;
+    }
+    .socials-body-icon h1 {
+        font-size: 20px;
+        word-break: break-all;
+        margin: 0 0 0 80px;
+        opacity: 0%;
+        transition: opacity 0.2s ease-in-out;
+        font-family: "Rubik", serif;
+    }
+
+    #socials-linkedin {
+        background-color: #007ebb;
+        background-image: url(/icons/linkedin.svg);
+    }
+    #socials-itch-io {
+        background-color: #fa5c5c;
+        background-image: url(/icons/itch-io.png);
+    }
+    #socials-github {
+        background-color: #f3f3f3;
+        background-image: url(/icons/github.svg);
+    }
+    #socials-github h1 {
+        color: #1b1f23;
+    }
+
     #page-body {
         margin-bottom: calc(var(--page-x-margin-bottom) - var(--entries-gap));
-    }
-
-    #entries-less {
-        width: calc(100% - 2 * var(--entries-margin-horizontal));
-        margin: 0 var(--entries-margin-horizontal);
         display: flex;
-        flex-wrap: wrap;
-        gap: var(--entries-gap);
+        justify-content: center;
     }
 
-    #entries-less figure {
-        width: calc((100% - var(--entries-gap) * 3) / var(--entries-per-row));
-        height: fit-content;
-        min-height: 300px;
-        margin: 0 0 var(--entries-gap) 0;
-        display: inline-block;
-        background-color: rgb(212, 241, 179);
-        position: relative;
-    }
-
-    #entries-more {
+    .entries {
         width: calc(100% - 2 * var(--entries-margin-horizontal));
         margin: 0 var(--entries-margin-horizontal);
-        column-count: var(--entries-per-row);
         gap: var(--entries-gap);
     }
 
-    #entries-more figure {
-        width: 100%;
-        height: fit-content;
-        min-height: 300px;
+    #entries-less-than-n {
+        display: flex;
+        justify-content: left;
+        flex-wrap: wrap;
+        flex-grow: 1;
+    }
+    #entries-less-than-n figure {
+        width: calc((100% - var(--entries-gap) * (var(--entries-per-row) - 1)) / var(--entries-per-row));
+    }
+    #entries-less-than-n .entry {
         margin: 0 0 var(--entries-gap) 0;
-        display: inline-block;
-        background-color: rgb(212, 241, 179);
-        position: relative;
+    }
+
+    #entries-more-than-n {
+        column-count: var(--entries-per-row);
+    }
+    #entries-more-than-n figure {
+        width: 100%;
+        break-inside: avoid;
+    }
+    #entries-more-than-n .entry {
+        margin: 0 0 var(--entries-gap) 0;
     }
 
     .entry {
-        background-position: center center;
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
-
-    .entry-background {
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-        position: absolute; /* Posiciona .test sobre el contenido de .entry */
-        z-index: 1;         /* Asegura que .test quede en el fondo */
-        opacity: 0;
-        transition: opacity 0.3s ease; /* Transición suave */
-    }
-    .entry-background.opacity {
-        opacity: 1;
-    }
-
-    .entry-foreground {
-        width: calc(100% - 2 * var(--entry-margin));
-        height: calc(100% - 2 * var(--entry-margin));
-        margin: var(--entry-margin);
-        top: 0;
-        display: flex;
-        flex-direction: column;
-        gap: 15px;
-        position: absolute; /* Posiciona .entry sobre .test */
-        z-index: 3;         /* Asegura que .entry quede encima de .test */
-        opacity: 1;
-        transition: opacity 0.3s ease; /* Transición suave */
-    }
-    .entry-foreground.opacity {
-        opacity: 0;
-    }
-    .entry-foreground-image {
-        width: 100%;
-        height: 100%;
-        background-size: cover;
-        background-position: center center;
-        background-repeat: no-repeat;
-        cursor: pointer;
-        border-radius: 3px;
-        opacity: 1;
-    }
-    .entry-foreground-title {
-        font-size: 32px;
-    }
-
-    .entry-moreground {
-        width: 100%;
         height: fit-content;
-        min-height: 100%;
-        background-color: rgba(0, 0, 0, 0.459);
-        backdrop-filter: blur(5px); /* Efecto desenfoque en el fondo */
-        -webkit-backdrop-filter: blur(30px); /* Soporte para Safari */
-        position: absolute; /* Posiciona .entry sobre .test */
-        z-index: 3;         /* Asegura que .entry quede encima de .test */
-        opacity: 0;
-        transition: opacity 0.3s ease; /* Transición suave */
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        position: relative;
     }
-    .entry-moreground.opacity {
-        opacity: 1;
+    .entry a {
+        width: fit-content;
+        color: rgb(212, 241, 179);
     }
-    
-    .entry-moreground h1{
-        font-size: 40px;
+    .entry a:hover {
+        color: rgb(197, 255, 131);
     }
-
-    .entry-moreground p {
-        font-size: 20px;
+    .entry a h1 {
+        font-size: 36px;
+        font-weight: normal;
     }
-
-    .entry-moreground-body {
+    .entry p {
+        color: rgb(235, 235, 235);
+        font-size: 22px;
+        text-align: justify;
+        overflow-wrap: break-word; /* Propiedad moderna */
+        white-space: normal; /* Permite que el texto se ajuste */
+    }
+    .entry-body-active {
+        width: calc(100% - 2 * var(--entry-margin));
         padding: var(--entry-margin);
+        background-color: #000000af;
+        backdrop-filter: blur(5px);
+        -webkit-backdrop-filter: blur(30px);
         display: flex;
         flex-direction: column;
         gap: 15px;
-        color: white;
+        transition: opacity 0.3s ease; 
     }
-    .entry-moreground-body p {
-        color: rgb(228, 255, 194);
+    .entry-body-active.opacity {
+        opacity: 0;
     }
 
+    .entry-body-hidden {
+        width: calc(100% - 2 * var(--entries-gap));
+        padding: var(--entries-gap);
+        position: absolute;
+        bottom: 0;
+        transition: opacity 0.3s ease; 
+        display: flex;
+        align-items: end;
+        background-color: #00000069;
+    }
+    .entry-body-hidden.opacity {
+        opacity: 0;
+    }
+    .entry-body-hidden h1 {
+        color: white;
+        font-weight: normal;
+        filter: drop-shadow(black 5px 5px 5px);
+    }
+ 
     .entry-tags {
         display: flex;
         flex-wrap: wrap;
@@ -226,338 +285,124 @@
     }
 
     .entry-tag {
-        background-color: rgb(0, 0, 0);
         min-width: 32px;
-        padding: 0 4px;
+        padding: 1px 4px;
         border-radius: 2px;
         text-align: center;
-        color: white;
+        background-color: white;
     }
 
-    a {
-        text-decoration: none;
-        color: white;
-    }
-    a:hover {
-        text-decoration: line-through;
-    }
 
-    a h1 {
-        font-weight: normal;
-    }
-
-    @media (max-width: 480px) {
-        /* Estilos para dispositivos muy pequeños */
+    @media (max-width: 600px) {
         :root {
-        	--entries-margin-horizontal: 0px;
-        }
+            --entries-margin-horizontal: 0px;
+            --entries-per-row: 1;
+        } 
 
-        #page-header-foreground {
-            position: absolute;
-            width: 100%;
-            height: calc(100% + var(--page-header-navbar-height));
-            /* margin-top: var(--page-header-navbar-height); */
-            background-color: rgba(0, 0, 0, 0.527);
-        }
-
-        #page-header {
-            margin: 0;
-        }
-
-        #page-header-body {
-            display: flex;
-            flex-direction: column;
+        #socials {
             align-items: center;
-        }
-
-        #page-header-body-left {
-            width: 100%;
-            height: 40%;
-            margin: 0;
-            display: flex;
-            justify-content: end;
-        }
-
-        #page-header-body-left h4 {
-            text-align: center;
-        }
-
-        #page-header-body-left p {
-            margin: 0 20px;
-            text-align: center;
-        }
-
-        #page-header-body-right {
-            width: 100%;
-            height: 60%;
-        }
-        #page-header-body-right img {
-            width: 80%;
-        }
-
-        #page-body {
-            margin: 0;
-        }
-
-        #entries-less, #entries-more {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0;
-        }
-
-        #entries-more figure, #entries-less figure {
-            width: 100%;
-            margin: 0;
-        }
-
-        #entries-more figure p, #entries-less figure p {
-            width: 100%;
-            margin: 0;
-            font-size: 24px;
-        }
-
-    }
-
-    @media (max-width: 768px) {
-        /* Estilos para la mayoría de los teléfonos */
-        :root {
-        	--entries-margin-horizontal: 0px;
-        }
-
-        #page-header-foreground {
-            position: absolute;
-            width: 100%;
-            height: calc(100% + var(--page-header-navbar-height));
-            /* margin-top: var(--page-header-navbar-height); */
-            background-color: rgba(0, 0, 0, 0.527);
-        }
-
-        #page-header {
-            margin: 0;
-        }
-
-        #page-header-body {
-            display: flex;
+            justify-content: center;
             flex-direction: column;
+            gap: 10px
+        }
+
+        #socials-cat {
+            aspect-ratio: 1/1;
+            height: 50%;
+        }
+
+        #socials-body {
+            width: 100%;
+            height: 20%;
             align-items: center;
+            justify-content: center;
+            flex-direction: row;
+        }
+                
+        #socials-body a {
+            width: 100%;
+            height: 100%;
         }
 
-        #page-header-body-left {
-            width: 100%;
-            height: 40%;
+        .socials-body-icon {
+            height: 100%;
+        }
+
+        #entries-less-than-n .entry {
             margin: 0;
-            display: flex;
-            justify-content: end;
-        }
-        
-        #page-header-body-left h4 {
-            text-align: center;
-        }
-
-        #page-header-body-left p {
-            margin: 0 20px;
-            text-align: center;
-        }
-
-        #page-header-body-right {
-            width: 100%;
-            height: 60%;
-        }
-        #page-header-body-right img {
-            width: 50%;
-        }
-
-        #page-body {
-            margin: 0;
-        }
-
-        #entries-less, #entries-more {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0;
-        }
-
-        #entries-more figure, #entries-less figure {
-            width: 100%;
-            margin: 0;
-        }
-
-        #entries-more figure p, #entries-less figure p {
-            width: 100%;
-            margin: 0;
-            font-size: 24px;
         }
     }
 
-    @media (min-width: 768px) and (max-width: 1024px) {
-    /* Estilos para tabletas en modo vertical y horizontal */
-        /* Estilos para la mayoría de los teléfonos */
+    @media (min-width: 601px) and (max-width: 768px) {
         :root {
-        	--entries-margin-horizontal: 50px;
+            --entries-margin-horizontal: 150px;
+            --entries-per-row: 1;
         }
 
-        #page-header-foreground {
-            position: absolute;
-            width: 100%;
-            height: calc(100% + var(--page-header-navbar-height));
-            /* margin-top: var(--page-header-navbar-height); */
-            background-color: rgba(0, 0, 0, 0.527);
-        }
-
-        #page-header {
-            margin-bottom: 30px;
-        }
-
-        #page-header-body {
-            display: flex;
+        #socials {
+            align-items: center;
+            justify-content: center;
             flex-direction: column;
+            gap: 10px
+        }
+
+        #socials-cat {
+            aspect-ratio: 1/1;
+            height: 70%;
+        }
+
+        #socials-body {
+            width: 100%;
+            height: 20%;
             align-items: center;
+            justify-content: center;
+            flex-direction: row;
+        }
+                
+        #socials-body a {
+            width: 100%;
+            height: 100%;
         }
 
-        #page-header-body-left {
-            width: 100%;
-            height: 40%;
+        .socials-body-icon {
+            height: 100%;
+        }
+
+        #entries-less-than-n .entry {
             margin: 0;
-            display: flex;
-            justify-content: end;
-        }
-        
-        #page-header-body-left h4 {
-            text-align: center;
-            font-size: 76px;
-        }
-
-        #page-header-body-left p {
-            margin: 0 20px;
-            text-align: center;
-            font-size: 26px;
-        }
-
-        #page-header-body-right {
-            width: 100%;
-            height: 60%;
-        }
-        #page-header-body-right img {
-            width: 30%;
-        }
-
-        #page-body {
-            margin: 30px;
-        }
-
-        #entries-less, #entries-more {
-            width: 100%;
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10;
-        }
-
-        #entries-more figure, #entries-less figure {
-            width: calc(100% - 100px); 
-            margin: 0;
-        }
-
-        #entries-more figure p, #entries-less figure p {
-            width: 100%;
-            margin: 0;
-            font-size: 24px;
         }
     }
 
-    @media (min-width: 1024px) and (max-width: 1280px) {
-        /* Estilos para dispositivos medianos */
+    @media (min-width: 769px) and (max-width: 1050px) {
         :root {
-        	--entries-margin-horizontal: 20px;
-            --entries-gap: 20px;
+            --entries-margin-horizontal: 100px;
             --entries-per-row: 2;
         }
-
-        #page-header-foreground {
-            position: absolute;
-            width: 100%;
-            height: calc(100% + var(--page-header-navbar-height));
-            /* margin-top: var(--page-header-navbar-height); */
-            background-color: rgba(0, 0, 0, 0.527);
-        }
-
-        #page-header {
-            margin-bottom: 30px;
-        }
-
-        #page-header-body {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #page-header-body-left {
-            width: 100%;
-            height: 40%;
-            margin: 0;
-            display: flex;
-            justify-content: end;
-        }
-        
-        #page-header-body-left h4 {
-            text-align: center;
-            font-size: 76px;
-        }
-
-        #page-header-body-left p {
-            margin: 0 20px;
-            text-align: center;
-            font-size: 26px;
-        }
-
-        #page-header-body-right {
-            width: 100%;
-            height: 60%;
-        }
-        #page-header-body-right img {
-            width: 20%;
-        }
-
-        #page-body {
+        #entries-less-than-n .entry {
             margin: 0;
         }
+    }
 
-        #page-body {
-            margin-bottom: calc(var(--page-x-margin-bottom) - var(--entries-gap));
+    @media (min-width: 1051px) and (max-width: 1280px) {
+        :root {
+            --entries-margin-horizontal: 200px;
+            --entries-per-row: 2;
         }
-
-        #entries-less {
-            width: calc(100% - 2 * var(--entries-margin-horizontal));
-            margin: 0 var(--entries-margin-horizontal);
-            display: flex;
-            flex-wrap: wrap;
-            gap: var(--entries-gap);
+        #entries-less-than-n .entry {
+            margin: 0;
         }
+    }
 
-        #entries-less figure {
-            width: calc((100% - var(--entries-gap) * 2) / var(--entries-per-row));
-            margin: 0 0 0 0;
-            display: inline-block;
-            position: relative;
+    @media (min-width: 1281px) and (max-width: 1440px) {
+        :root {
+            --entries-margin-horizontal: 150px;
+            --entries-per-row: 3;
+            --page-header-body-left-margin-left: 200px;
+            --page-header-body-left-margin-right: var(--page-header-body-left-margin-left);
         }
-
-        #entries-more {
-            width: calc(100% - 2 * var(--entries-margin-horizontal));
-            margin: 0 var(--entries-margin-horizontal);
-            column-count: var(--entries-per-row);
-            gap: var(--entries-gap);
+        #entries-less-than-n .entry {
+            margin: 0;
         }
-
-        #entries-more figure {
-            width: 100%;
-            margin: 0 0 var(--entries-gap) 0;
-            display: inline-block;
-            position: relative;
-        }
-
-
-
     }
 
 </style>
@@ -577,42 +422,79 @@
                 <p>Computer engineer in my full time, videogames developer, kind of a hacker student and an artist in my free time who also writes sometimes.</p>
             </div>
             <div id="page-header-body-right">
-                <img src="/working-cat.gif" alt="Oh no, the cat go on vacation">
-                Please, be patient, I'm working step by step to maintain the quality of the page.
+                <div id="socials">
+                    <div id="socials-cat"></div>
+                    <div id="socials-body">
+                        <!-- svelte-ignore a11y_mouse_events_have_key_events -->
+                        <a
+                            on:mouseover ={() => setSocial("linkedin")} 
+                            on:mouseleave={() => setSocial()}
+                            id="socials-linkedin"
+                            class="socials-body-icon"
+                            href="https://www.linkedin.com/in/ddok/"
+                            aria-label="Linkedin"
+                            target="_blank"
+                            style:background-position="{activeSocial === "linkedin" ? "10%" : "center"} center"
+                        >
+                            <h1 style:opacity={activeSocial === "linkedin" ? "100%" : "0%"}>Linkedin</h1>
+                        </a>
+                        <!-- svelte-ignore a11y_mouse_events_have_key_events -->
+                        <a
+                            on:mouseover ={() => setSocial("itch.io")} 
+                            on:mouseleave={() => setSocial()}
+                            id="socials-itch-io"
+                            class="socials-body-icon"
+                            href="https://varondede.itch.io"
+                            aria-label="Itch.io"
+                            target="_blank"
+                            style:background-position="{activeSocial === "itch.io" ? "10%" : "center"} center"
+                        >
+                            <h1 style:opacity={activeSocial === "itch.io" ? "100%" : "0%"}>Itch.io</h1>
+                        </a>
+                        <!-- svelte-ignore a11y_mouse_events_have_key_events -->
+                        <a
+                            on:mouseover ={() => setSocial("github")} 
+                            on:mouseleave={() => setSocial()}
+                            id="socials-github"
+                            class="socials-body-icon"
+                            href="https://github.com/dedetheprogrammer"
+                            aria-label="Github"
+                            target="_blank"
+                            style:background-position="{activeSocial === "github" ? "10%" : "center"} center"
+                        >
+                            <h1 style:opacity={activeSocial === "github" ? "100%" : "0%"}>Github</h1>
+                        </a>
+                    </div>
+                </div>
+                <p>Please, be patient, I'm working step by step to maintain the quality of the page.</p>
             </div>
         </div>
     </div>
 </div>
 
 <div id="page-body">
-    <div id={data.posts.length <= 3 ? "entries-less" : "entries-more"}>
-        {#each data.posts as post}
-        <!-- svelte-ignore a11y_mouse_events_have_key_events -->
-        <figure
-            class="entry"
-            on:mouseover={() => showTest(post.slug)} 
-            on:mouseleave={() => hideTest()}
-        >
-            <!-- <div>Hola</div>
-            <div class="entry-background" class:opacity={1} style:background-image="url({post.cover})"></div> -->
-            <div class="entry-background" class:opacity={activeSlug === post.slug} style:background-image="url({post.cover})"></div>
-            <!-- Moreground: Shown on hover -->
-            <div class="entry-foreground" class:opacity={activeSlug === post.slug}>
-                <div class="entry-foreground-image" style:background-image="url({post.cover})"></div>
-                <div class="entry-foreground-title">{post.title}</div>
-            </div>
-            <div class="entry-moreground" class:opacity={activeSlug === post.slug}>
-                <div class="entry-moreground-body">
+    <div id={data.posts.length <= 3 ? "entries-less-than-n" : "entries-more-than-n"} class="entries">
+        {#each data.posts as post, index}
+            <!-- svelte-ignore a11y_mouse_events_have_key_events -->
+            <figure
+                class="entry"
+                on:mouseover ={() => setSlug(post.slug)} 
+                on:mouseleave={() => setSlug()}
+                style:background-image="url({post.cover})"
+            >
+                <div class="entry-body-hidden" class:opacity={activeSlug === post.slug}>
+                    <h1>{post.title}</h1>
+                </div>
+                <div class="entry-body-active" class:opacity={activeSlug !== post.slug}>
                     <a href="{post.slug}"><h1>{post.title}</h1></a>
                     <div class="entry-tags">
                         {#each post.tags as tag}
-                            <div class="entry-tag" style="background-color:{tagBgColor(tag, '#000000')}; color:{tagFgColor(tag, '#ffffff')}">{tag}</div>
+                            <div class="entry-tag" style="background-color:{tagBgColor(tag, '#111111')}; color:{tagFgColor(tag, '#ffffff')}">{tag}</div>
                         {/each}
                     </div>
                     <p>{post.description}</p>
                 </div>
-            </div>
-        </figure>
+            </figure>
         {/each}
     </div>
 </div>
