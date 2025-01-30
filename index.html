@@ -4,11 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
+    <script src="index.js" defer></script>
     <title>I don't want to pay</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
         
         :root {
+            --highlights-width: 800px;
             --entry-width: 540px;
             --entry-info-padding: 20px;
         }
@@ -120,55 +122,69 @@
             text-align: center;
         }
 
-        .app-highlights {
-            max-width: 600px;
-            margin: 0 auto;
-            height: calc(100% - 2 * 20px);
-            padding: 20px 0px;
+        section {
+            width: min(90%, var(--highlights-width, 800px));
+            min-width: 300px;
+            max-width: 100%;
+            margin: 0 auto 30px auto;
+            height: auto;
+            padding: 0 clamp(10px, 5vw, 20px);
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             gap: 15px;
         }
+        section h1 {
+            width: 100%;
+        }
 
-        .highlights-title {
-            min-width: var(--entry-width);
+        .section-highlights-content {
+            width: 100%;
             margin: 0 auto;
+            height: 100%;
+            line-height: 1.5em;
+            text-align: justify;
         }
 
-        .highlights-content {
-            height: 100%;
-        }
-        .highlights-content img {
+        .section-highlights-content-cover {
+            width: 100%;
             height: 100%;
             border-radius: 5px;
-        }
+            position: relative;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            /* transition: background-image 0.2s ease-in; */
+            /* transition: background-image 0.2s ease-in, width 0.3s ease, height 0.3s ease; */
 
-        .play-button {
-            width: 200px;
-            height: 70px;
-            border-radius: 10px;
-            cursor: pointer;
+        }
+        #section-highlights-content-thumbnails {
+            width: 100%;
+            height: 120px;
+            margin-top: 3px;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 15px;
-            text-decoration: none;
-            color: inherit
+            gap: 10px;
         }
-        .play-button img {
-            height: 70%;
+        .section-highlights-content-thumbnail {
+            width: 250px;
+            height: 120px; /* O la altura que prefieras */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            border-radius: 5px; /* Bordes redondeados */
         }
-        .on-itchio {
-            background-color: #e65151;
-        }
-        .on-itchio:hover {
-            background-color: #fa5c5c;
+
+        .section-socials-content {
+            width: 100%;
+            display: flex;
+            gap: 10px;
         }
 
         .app-body {
-            max-width: var(--entry-width);
+            max-width: calc(var(--entry-width) - 2 * 20px);
             margin: 0 auto;
             padding: 20px;
             display: flex;
@@ -179,16 +195,11 @@
             gap: 20px;
         }
 
-        .entries-title {
-            width: 100%;
-            margin-top: 15px;
-        }
-
         .entry {
             background: #f4f4f4;
-            width: var(--entry-width);
+            width: 100%;
             position: relative;
-            height: 300px;
+            height: 150px;
             overflow: hidden;
             text-align: center;
             border-radius: 20px;
@@ -214,7 +225,6 @@
             transform: translateY(0);
         }
 
-
         .entry-foreground {
             width: calc(100% - 2 * var(--entry-info-padding));
             height: calc(100% - 2 * var(--entry-info-padding));
@@ -225,17 +235,20 @@
             color: white;
             filter: drop-shadow(1px 1px 3px black);
         }
+        .entry-foreground h3 {
+            word-break: break-all;
+        }
 
         .entry-link {
-            width: 100%;
-            height: 100%;
             display: flex;
             align-items: end;
             justify-content: start;
             text-decoration: none; /* Elimina el subrayado */
-            color: inherit; /* Hereda el color del texto */
+            color: white !important; /* Hereda el color del texto */
             cursor: default;
+            text-align: left;
         }
+
         .entry-enabled {
             cursor: pointer;
         }
@@ -252,8 +265,32 @@
             justify-content: center;
         }
 
+        /********** PLAY BUTTONS **********/
+        .play-button {
+            max-width: 200px;
+            height: 70px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            text-decoration: none;
+            color: white !important;
+        }
+        .play-button img {
+            height: 70%;
+        }
+        .on-itchio {
+            background-color: #e65151;
+        }
+        .on-itchio:hover {
+            background-color: #fa5c5c;
+        }
+        /**********************************/
     </style>
 </head>
+
 <body>
     <div class="app-header">
         <div class="app-header-about-me">
@@ -264,31 +301,33 @@
             </div>
         </div>
     </div>
-    <div class="app-highlights">
-        <div class="highlights-title">
-            <h1>Highlights!</h1>
-        </div>
-        <div class="highlights-content">
+
+    <section class="section-highlights">
+        <h1>Highlights!</h1>
+        <div class="section-highlights-content">
             <h2>Participated in the Global Game Jam!</h2>
-            <p>As you know, or as you have noticed, I've recently participated in the global game jam, where we've been developing a game in 48hours under the theme "BUBBLE"</p>
-            <div style="position: relative; display: inline-block;">
-                <img style="position: relative;" src="static/images/projects/siluro-cachirulo/iconart.png" />
-                <a class="play-button on-itchio" style="position: absolute; right: 10px; bottom: 15px;" href="https://diadantist.itch.io/sirulo-cachirulo" target="_blank">
+            <p>As you know, or as you have noticed, I've recently participated in the global game jam, where we've been developing a game in 48 hours under the theme "BUBBLE".</p>
+            <div style="position: relative; display: inline-block; width: 100%; height: 500px;">
+                <div id="main-image" class="section-highlights-content-cover" style="background-image: url(static/images/projects/siluro-cachirulo/iconart.png);"> </div>
+                <a class="play-button on-itchio" style="position: absolute; right: 10px; bottom: 15px; width: 40%;" href="https://diadantist.itch.io/sirulo-cachirulo" target="_blank">
                     <img src="static/icons/itchio-textless-black.svg" />
                     <div style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                        <p style="margin:0">Play it on</p>
-                        <b style="font-size:30px">itch.io</b>
+                        <p style="margin:0; font-size: clamp(9px, 5vw, 15px)">Play it on</p>
+                        <b style="font-size: clamp(16px, 5vw, 25px)">itch.io</b>
                     </div>
                 </a>
             </div>
-
+            <div id="section-highlights-content-thumbnails">
+                <div class="section-highlights-content-thumbnail" style="border-radius: 5px; width: 100%; height: 100%; background-image: url(static/images/projects/siluro-cachirulo/0-main-menu.jpeg);" ></div>
+                <div class="section-highlights-content-thumbnail" style="border-radius: 5px; width: 100%; height: 100%; background-image: url(static/images/projects/siluro-cachirulo/2-instructions.jpeg);" ></div>
+                <div class="section-highlights-content-thumbnail" style="border-radius: 5px; width: 100%; height: 100%; background-image: url(static/images/projects/siluro-cachirulo/4-game-streak.jpeg);" ></div>
+                <div class="section-highlights-content-thumbnail" style="border-radius: 5px; width: 100%; height: 100%; background-image: url(static/images/projects/siluro-cachirulo/5-dead-screen.jpeg);" ></div>
+            </div>
             <h4>Siluro Cachirulo is a 2D pixelart rythm game featuring a silly catfish who loves exploding bubble wrap!</h4>
-            <h3></h3>
             <h4><img src="https://img.itch.zone/aW1nLzE5NTM2NzY3LmdpZg==/original/hWhHNT.gif"> Features&nbsp;<img src="https://img.itch.zone/aW1nLzE5NTM2NzU5LmdpZg==/original/%2BkYG5T.gif"></h4>
             <ul><li>A silly catfish in a cute and colorful pixelart artstyle!</li><li>A soundtrack completely made ONLY with beatbox!<em> (and a phone mic lol)</em></li></ul>
             <p>This game was made for the&nbsp;<a href="https://itch.io/jam/ggj-teruel-2025">Global Game Jam</a>&nbsp;in Teruel in <strong>48 HOURS!</strong></p>
-            <p>The GGJ is&nbsp;a worldwide jam where many countries participate. The theme was "BUBBLE", and we had little extra challenges! Those are doing the game with the next constraints:
-            </p>
+            <p>The GGJ is&nbsp;a worldwide jam where many countries participate. The theme was "BUBBLE", and we had little extra challenges! Those are doing the game with the next constraints:</p>
             <ul><li>ONLY in&nbsp;<strong>pixelart, 256px&nbsp;</strong>size max.
             </li><li>All sounds must be made by using&nbsp;<strong>beatbox (and a phone lmao)</strong></li><li>Be&nbsp;<strong>playable with one hand</strong>
             </li><li>Represent&nbsp;<strong>Aragón, the place where we are participating from</strong>!</li></ul>
@@ -297,52 +336,49 @@
             <p><em>&nbsp;<img style="max-width: 100%; vertical-align: middle; font-size: 14px; height: auto !important;" src="https://img.itch.zone/aW1nLzE5NTM2ODY1LnBuZw==/original/MNvVbA.png">&nbsp;&nbsp;<strong>We higly recommend you to play this game using headphones!</strong>&nbsp;&nbsp;<img style="max-width: 100%; vertical-align: middle; font-size: 14px; height: auto !important;" src="https://img.itch.zone/aW1nLzE5NTM2ODYzLnBuZw==/original/cCQr9i.png"></em></p>
             <p><em>* No silly catfishes nor bubble wraps</em><em> were harmed in the production of this game</em><em>.</em><br></p>
         </div>
-    </div>
+    </section>
+    <!-- <section class="section-projects">
+        <h1>Projects</h1>
+        <div class="projects-entry">
 
-    <div class="app-body">
-        <div class="entries-title">
-            <h1>Public Socials</h1>
         </div>
-        <div class="entry" style="background-image: url(static/images/thumbnail_itchio.jpg);">
-            <div class="entry-background"></div>
-            <a href="https://dedethedevelope.itch.io/" target="_blank" class="entry-foreground entry-link entry-enabled">
-                <h3>Itch.io</h3>
-            </a>
+    </section> -->
+    <section class="section-socials">
+        <h1>Let's connect!</h1>
+        <div class="section-socials-content">
+            <div class="entry" style="background-image: url(static/images/thumbnail_itchio.jpg);">
+                <div class="entry-background"></div>
+                <a href="https://dedethedevelope.itch.io/" target="_blank" class="entry-foreground entry-link entry-enabled">
+                    <h3>Itch.io</h3>
+                </a>
+            </div>
+            <div class="entry" style="background-image: url(static/images/thumbnail_instagram.jpg);">
+                <div class="entry-background"></div>
+                <a href="https://www.instagram.com/dede_makes_things/" target="_blank" class="entry-foreground entry-link entry-enabled">
+                    <h3>Instagram</h3>
+                </a>
+            </div>
+            <div class="entry" style="background-image: url(static/images/thumbnail_twitch.jpg);">
+                <div class="entry-background"></div>
+                <a href="https://www.twitch.tv/dede_the_streamer" target="_blank" class="entry-foreground entry-link entry-enabled">
+                    <h3>Twitch</h3>
+                </a>
+            </div>
+            <div class="entry" style="background-image: url(static/images/thumbnail_comissions.jpg);">
+                <div class="entry-background"></div>
+                <a target="_blank" class="entry-foreground entry-link entry-disabled">
+                    <h3>(WIP) Comissions</h3>
+                </a>
+            </div>
+            <div class="entry" style="background-image: url(static/images/thumbnail_ko-fi.jpg);">
+                <div class="entry-background"></div>
+                <a target="_blank" class="entry-foreground entry-link entry-disabled">
+                    <h3>(WIP) Ko-Fi</h3>
+                </a>
+            </div>
         </div>
-        <div class="entry" style="background-image: url(static/images/thumbnail_instagram.jpg);">
-            <div class="entry-background"></div>
-            <a href="https://www.instagram.com/dede_makes_things/" target="_blank" class="entry-foreground entry-link entry-enabled">
-                <h3>Instagram</h3>
-            </a>
-        </div>
-        <div class="entry" style="background-image: url(static/images/thumbnail_twitch.jpg);">
-            <div class="entry-background"></div>
-            <a href="https://www.twitch.tv/dede_the_streamer" target="_blank" class="entry-foreground entry-link entry-enabled">
-                <h3>Twitch</h3>
-            </a>
-        </div>
-        <div class="entries-title">
-            <h1>Planned</h1>
-        </div>
-        <div class="entry" style="background-image: url(static/images/thumbnail_bluesky.jpg);">
-            <div class="entry-background"></div>
-            <a target="_blank" class="entry-foreground entry-link entry-disabled">
-                <h3> </h3>
-            </a>
-        </div>
-        <div class="entry" style="background-image: url(static/images/thumbnail_comissions.jpg);">
-            <div class="entry-background"></div>
-            <a target="_blank" class="entry-foreground entry-link entry-disabled">
-                <h3>Comissions</h3>
-            </a>
-        </div>
-        <div class="entry" style="background-image: url(static/images/thumbnail_ko-fi.jpg);">
-            <div class="entry-background"></div>
-            <a target="_blank" class="entry-foreground entry-link entry-disabled">
-                <h3>Ko-Fi</h3>
-            </a>
-        </div>
-    </div>
+    </section>
+
     <div class="app-footer">
         <span>Powered by Github Pages.</span>
     </div>
