@@ -1,386 +1,386 @@
 <!DOCTYPE html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <script src="index.js" defer></script>
-    <title>I don't want to pay</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="icon" type="image/x-icon" href="favicon.ico">
+        <script src="index.js" defer></script>
+        <title>I don't want to pay</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+            
+            :root {
+                --highlights-width: 800px;
+                --entry-width: 540px;
+                --entry-info-padding: 20px;
+            }
+
+            /* Estilos generales */
+            body {
+                font-family: "Noto Sans", serif;
+                /* font-family: Arial, sans-serif; */
+                margin: 0;
+                padding: 20px 0px 0px 0px;
+                box-sizing: border-box;
+                background-color: black;
+                color: white;
+            }
+
+            header {
+                background: #333;
+                color: white;
+                padding: 20px;
+                text-align: center;
+            }
+
+            h1 {
+                margin: 0;
+            }
+
+            h2 {
+                font-size: 20px;
+            }
+
+            h3 {
+                margin: 0;
+                font-size: 16px;
+            }
+
         
-        :root {
-            --highlights-width: 800px;
-            --entry-width: 540px;
-            --entry-info-padding: 20px;
-        }
+            /* Tabla con bordes blancos */
+            table {
+                border-collapse: collapse; /* Para unir los bordes */
+                width: 100%; /* Ejemplo: ancho completo */
+            }
 
-        /* Estilos generales */
-        body {
-            font-family: "Noto Sans", serif;
-            /* font-family: Arial, sans-serif; */
-            margin: 0;
-            padding: 20px 0px 0px 0px;
-            box-sizing: border-box;
-            background-color: black;
-            color: white;
-        }
+            th, td {
+                border: 1px solid white; /* Bordes blancos */
+                padding: 10px; /* Espaciado dentro de las celdas */
+                text-align: left;
+            }
 
-        header {
-            background: #333;
-            color: white;
-            padding: 20px;
-            text-align: center;
-        }
+            th {
+                background-color: #333; /* Fondo oscuro para encabezados */
+                color: white; /* Texto blanco en encabezados */
+            }
 
-        h1 {
-            margin: 0;
-        }
+            td {
+                background-color: #222; /* Fondo oscuro para celdas */
+                color: white; /* Texto blanco en celdas */
+            }
+            
+            a {
+                color: rgb(152, 243, 152);
+            }
+            a:visited {
+                color:rgb(41, 126, 41);
+            }
 
-        h2 {
-            font-size: 20px;
-        }
+            .app-header {
+                width: 100%;
+                min-height: 264px;
+                margin: 20px 0px 50px 0px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
 
-        h3 {
-            margin: 0;
-            font-size: 16px;
-        }
+            .app-header-about-me {
+                height: 100%;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 15px;
+                color: white;
+            }
 
-    
-        /* Tabla con bordes blancos */
-        table {
-            border-collapse: collapse; /* Para unir los bordes */
-            width: 100%; /* Ejemplo: ancho completo */
-        }
+            .profile-picture {
+                width: 100px;
+                margin-top: 20px;
+                aspect-ratio: 1 / 1;
+                background-color: white;
+                border-radius: 50%;
+                background-image: url(static/images/profile_picture.jpg);
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: contain;
+            }
 
-        th, td {
-            border: 1px solid white; /* Bordes blancos */
-            padding: 10px; /* Espaciado dentro de las celdas */
-            text-align: left;
-        }
+            .profile-bio {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 5px;
+            }
 
-        th {
-            background-color: #333; /* Fondo oscuro para encabezados */
-            color: white; /* Texto blanco en encabezados */
-        }
+            .profile-bio p {
+                width: 300px;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+            }
 
-        td {
-            background-color: #222; /* Fondo oscuro para celdas */
-            color: white; /* Texto blanco en celdas */
-        }
-        
-        a {
-            color: rgb(152, 243, 152);
-        }
-        a:visited {
-            color:rgb(41, 126, 41);
-        }
+            section {
+                width: min(90%, var(--highlights-width, 800px));
+                min-width: 300px;
+                max-width: 100%;
+                margin: 0 auto 30px auto;
+                height: auto;
+                padding: 0 clamp(10px, 5vw, 20px);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 15px;
+            }
+            section h1 {
+                width: 100%;
+            }
 
-        .app-header {
-            width: 100%;
-            min-height: 264px;
-            margin: 20px 0px 50px 0px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+            .section-highlights-content {
+                width: 100%;
+                margin: 0 auto;
+                height: 100%;
+                line-height: 1.5em;
+                text-align: justify;
+            }
 
-        .app-header-about-me {
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            color: white;
-        }
+            .section-highlights-content-cover {
+                width: 100%;
+                height: 100%;
+                border-radius: 5px;
+                position: relative;
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                /* transition: background-image 0.2s ease-in; */
+                /* transition: background-image 0.2s ease-in, width 0.3s ease, height 0.3s ease; */
 
-        .profile-picture {
-            width: 100px;
-            margin-top: 20px;
-            aspect-ratio: 1 / 1;
-            background-color: white;
-            border-radius: 50%;
-            background-image: url(static/images/profile_picture.jpg);
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: contain;
-        }
+            }
+            #section-highlights-content-thumbnails {
+                width: 100%;
+                height: 120px;
+                margin-top: 3px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+            }
+            .section-highlights-content-thumbnail {
+                width: 250px;
+                height: 120px; /* O la altura que prefieras */
+                background-position: center;
+                background-repeat: no-repeat;
+                background-size: cover;
+                border-radius: 5px; /* Bordes redondeados */
+            }
 
-        .profile-bio {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 5px;
-        }
+            .section-socials-content {
+                width: 100%;
+                display: flex;
+                gap: 10px;
+            }
 
-        .profile-bio p {
-            width: 300px;
-            margin: 0;
-            padding: 0;
-            text-align: center;
-        }
+            .app-body {
+                max-width: calc(var(--entry-width) - 2 * 20px);
+                margin: 0 auto;
+                padding: 20px;
+                display: flex;
+                flex-direction: column;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: center;
+                gap: 20px;
+            }
 
-        section {
-            width: min(90%, var(--highlights-width, 800px));
-            min-width: 300px;
-            max-width: 100%;
-            margin: 0 auto 30px auto;
-            height: auto;
-            padding: 0 clamp(10px, 5vw, 20px);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-        }
-        section h1 {
-            width: 100%;
-        }
+            .entry {
+                background: #f4f4f4;
+                width: 100%;
+                position: relative;
+                height: 150px;
+                overflow: hidden;
+                text-align: center;
+                border-radius: 20px;
+                background-position: center center;
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
 
-        .section-highlights-content {
-            width: 100%;
-            margin: 0 auto;
-            height: 100%;
-            line-height: 1.5em;
-            text-align: justify;
-        }
+            .entry-background {
+                width: 100%;
+                height: 100%;
+                bottom: -100%;
+                left: 0;
+                z-index: 2;
+                display: flex;
+                align-items: end;
+                justify-content: start;
+                transition: transform 0.25s ease-in-out;
+                transform: translateY(100%);
+                background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,1) 100%);
+            }
+            .entry:hover .entry-background {
+                transform: translateY(0);
+            }
 
-        .section-highlights-content-cover {
-            width: 100%;
-            height: 100%;
-            border-radius: 5px;
-            position: relative;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            /* transition: background-image 0.2s ease-in; */
-            /* transition: background-image 0.2s ease-in, width 0.3s ease, height 0.3s ease; */
+            .entry-foreground {
+                width: calc(100% - 2 * var(--entry-info-padding));
+                height: calc(100% - 2 * var(--entry-info-padding));
+                padding: var(--entry-info-padding);
+                position: absolute;
+                z-index: 3;
+                bottom: 0%;
+                color: white;
+                filter: drop-shadow(1px 1px 3px black);
+            }
+            .entry-foreground h3 {
+                font-size: clamp(5px, 100%, 20px);
+                word-break: break-all;
+            }
 
-        }
-        #section-highlights-content-thumbnails {
-            width: 100%;
-            height: 120px;
-            margin-top: 3px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-        .section-highlights-content-thumbnail {
-            width: 250px;
-            height: 120px; /* O la altura que prefieras */
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            border-radius: 5px; /* Bordes redondeados */
-        }
+            .entry-link {
+                display: flex;
+                align-items: end;
+                justify-content: start;
+                text-decoration: none; /* Elimina el subrayado */
+                color: white !important; /* Hereda el color del texto */
+                cursor: default;
+                text-align: left;
+            }
 
-        .section-socials-content {
-            width: 100%;
-            display: flex;
-            gap: 10px;
-        }
+            .entry-enabled {
+                cursor: pointer;
+            }
+            .entry-disabled {
+                cursor: not-allowed;
+            }
 
-        .app-body {
-            max-width: calc(var(--entry-width) - 2 * 20px);
-            margin: 0 auto;
-            padding: 20px;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-        }
+            footer {
+                margin-top: 50px;
+                width: 100%;
+                font-size: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
 
-        .entry {
-            background: #f4f4f4;
-            width: 100%;
-            position: relative;
-            height: 150px;
-            overflow: hidden;
-            text-align: center;
-            border-radius: 20px;
-            background-position: center center;
-            background-repeat: no-repeat;
-            background-size: cover;
-        }
+            /********** PLAY BUTTONS **********/
+            .play-button {
+                max-width: 200px;
+                height: 70px;
+                border-radius: 10px;
+                cursor: pointer;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 15px;
+                text-decoration: none;
+                color: white !important;
+            }
+            .play-button img {
+                height: 70%;
+            }
+            .on-itchio {
+                background-color: #e65151;
+            }
+            .on-itchio:hover {
+                background-color: #fa5c5c;
+            }
+            /**********************************/
+        </style>
+    </head>
 
-        .entry-background {
-            width: 100%;
-            height: 100%;
-            bottom: -100%;
-            left: 0;
-            z-index: 2;
-            display: flex;
-            align-items: end;
-            justify-content: start;
-            transition: transform 0.25s ease-in-out;
-            transform: translateY(100%);
-            background: linear-gradient(180deg, rgba(2,0,36,0) 0%, rgba(255,255,255,0) 50%, rgba(0,0,0,1) 100%);
-        }
-        .entry:hover .entry-background {
-            transform: translateY(0);
-        }
-
-        .entry-foreground {
-            width: calc(100% - 2 * var(--entry-info-padding));
-            height: calc(100% - 2 * var(--entry-info-padding));
-            padding: var(--entry-info-padding);
-            position: absolute;
-            z-index: 3;
-            bottom: 0%;
-            color: white;
-            filter: drop-shadow(1px 1px 3px black);
-        }
-        .entry-foreground h3 {
-            word-break: break-all;
-        }
-
-        .entry-link {
-            display: flex;
-            align-items: end;
-            justify-content: start;
-            text-decoration: none; /* Elimina el subrayado */
-            color: white !important; /* Hereda el color del texto */
-            cursor: default;
-            text-align: left;
-        }
-
-        .entry-enabled {
-            cursor: pointer;
-        }
-        .entry-disabled {
-            cursor: not-allowed;
-        }
-
-        .app-footer {
-            margin-top: 40px;
-            width: 100%;
-            font-size: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /********** PLAY BUTTONS **********/
-        .play-button {
-            max-width: 200px;
-            height: 70px;
-            border-radius: 10px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            text-decoration: none;
-            color: white !important;
-        }
-        .play-button img {
-            height: 70%;
-        }
-        .on-itchio {
-            background-color: #e65151;
-        }
-        .on-itchio:hover {
-            background-color: #fa5c5c;
-        }
-        /**********************************/
-    </style>
-</head>
-
-<body>
-    <div class="app-header">
-        <div class="app-header-about-me">
-            <div class="profile-picture"></div>
-            <div class="profile-bio">
-                <h2>Dede has a lot of socials</h2>
-                <p>Traditional and 2D pixel artist.</p>
+    <body>
+        <div class="app-header">
+            <div class="app-header-about-me">
+                <div class="profile-picture"></div>
+                <div class="profile-bio">
+                    <h2>Dede has a lot of socials</h2>
+                    <p>Traditional and 2D pixel artist.</p>
+                </div>
             </div>
         </div>
-    </div>
 
-    <section class="section-highlights">
-        <h1>Highlights!</h1>
-        <div class="section-highlights-content">
-            <h2>Participated in the Global Game Jam!</h2>
-            <p>As you know, or as you have noticed, I've recently participated in the global game jam, where we've been developing a game in 48 hours under the theme "BUBBLE".</p>
-            <div style="position: relative; display: inline-block; width: 100%; height: 500px;">
-                <div id="main-image" class="section-highlights-content-cover" style="background-image: url(static/images/projects/siluro-cachirulo/iconart.png);"> </div>
-                <a class="play-button on-itchio" style="position: absolute; right: 10px; bottom: 15px; width: 40%;" href="https://diadantist.itch.io/sirulo-cachirulo" target="_blank">
-                    <img src="static/icons/itchio-textless-black.svg" />
-                    <div style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
-                        <p style="margin:0; font-size: clamp(9px, 5vw, 15px)">Play it on</p>
-                        <b style="font-size: clamp(16px, 5vw, 25px)">itch.io</b>
-                    </div>
-                </a>
+        <section class="section-highlights">
+            <h1>Highlights!</h1>
+            <div class="section-highlights-content">
+                <h2>Participated in the Global Game Jam!</h2>
+                <p>As you know, or as you have noticed, I've recently participated in the global game jam, where we've been developing a game in 48 hours under the theme "BUBBLE".</p>
+                <div style="position: relative; display: inline-block; width: 100%; height: 500px;">
+                    <div id="main-image" class="section-highlights-content-cover" style="background-image: url(static/images/projects/siluro-cachirulo/iconart.png);"> </div>
+                    <a class="play-button on-itchio" style="position: absolute; right: 10px; bottom: 15px; width: 40%;" href="https://diadantist.itch.io/sirulo-cachirulo" target="_blank">
+                        <img src="static/icons/itchio-textless-black.svg" />
+                        <div style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                            <p style="margin:0; font-size: clamp(9px, 5vw, 15px)">Play it on</p>
+                            <b style="font-size: clamp(16px, 5vw, 25px)">itch.io</b>
+                        </div>
+                    </a>
+                </div>
+                <div id="section-highlights-content-thumbnails">
+                    <div class="section-highlights-content-thumbnail" style="border-radius: 5px; width: 100%; height: 100%; background-image: url(static/images/projects/siluro-cachirulo/0-main-menu.jpeg);" ></div>
+                    <div class="section-highlights-content-thumbnail" style="border-radius: 5px; width: 100%; height: 100%; background-image: url(static/images/projects/siluro-cachirulo/2-instructions.jpeg);" ></div>
+                    <div class="section-highlights-content-thumbnail" style="border-radius: 5px; width: 100%; height: 100%; background-image: url(static/images/projects/siluro-cachirulo/4-game-streak.jpeg);" ></div>
+                    <div class="section-highlights-content-thumbnail" style="border-radius: 5px; width: 100%; height: 100%; background-image: url(static/images/projects/siluro-cachirulo/5-dead-screen.jpeg);" ></div>
+                </div>
+                <h4>Siluro Cachirulo is a 2D pixelart rythm game featuring a silly catfish who loves exploding bubble wrap!</h4>
+                <h4><img src="https://img.itch.zone/aW1nLzE5NTM2NzY3LmdpZg==/original/hWhHNT.gif"> Features&nbsp;<img src="https://img.itch.zone/aW1nLzE5NTM2NzU5LmdpZg==/original/%2BkYG5T.gif"></h4>
+                <ul><li>A silly catfish in a cute and colorful pixelart artstyle!</li><li>A soundtrack completely made ONLY with beatbox!<em> (and a phone mic lol)</em></li></ul>
+                <p>This game was made for the&nbsp;<a href="https://itch.io/jam/ggj-teruel-2025">Global Game Jam</a>&nbsp;in Teruel in <strong>48 HOURS!</strong></p>
+                <p>The GGJ is&nbsp;a worldwide jam where many countries participate. The theme was "BUBBLE", and we had little extra challenges! Those are doing the game with the next constraints:</p>
+                <ul><li>ONLY in&nbsp;<strong>pixelart, 256px&nbsp;</strong>size max.
+                </li><li>All sounds must be made by using&nbsp;<strong>beatbox (and a phone lmao)</strong></li><li>Be&nbsp;<strong>playable with one hand</strong>
+                </li><li>Represent&nbsp;<strong>Aragón, the place where we are participating from</strong>!</li></ul>
+                <h4>Credits:</h4>
+                <table><tbody><tr><td>Coordinators</td><td>All the team!<br></td></tr><tr><td>Programming</td><td><a href="https://dedethedevelope.itch.io/">Dede</a>, <a href="https://ukibs.itch.io/">ukibs</a><br></td></tr><tr><td>Art and Design team<br></td><td><a href="https://diadantist.itch.io/">Diadantist</a></td></tr><tr><td>Music<br></td><td><a href="https://itch.io/profile/saltasoles">Saltasoles</a></td></tr><tr><td>Beta Testing<br></td><td>All the people who participated in this gamejam and got sick while developing their games :( *<br></td></tr></tbody></table>
+                <p><em>&nbsp;<img style="max-width: 100%; vertical-align: middle; font-size: 14px; height: auto !important;" src="https://img.itch.zone/aW1nLzE5NTM2ODY1LnBuZw==/original/MNvVbA.png">&nbsp;&nbsp;<strong>We higly recommend you to play this game using headphones!</strong>&nbsp;&nbsp;<img style="max-width: 100%; vertical-align: middle; font-size: 14px; height: auto !important;" src="https://img.itch.zone/aW1nLzE5NTM2ODYzLnBuZw==/original/cCQr9i.png"></em></p>
+                <p><em>* No silly catfishes nor bubble wraps</em><em> were harmed in the production of this game</em><em>.</em><br></p>
             </div>
-            <div id="section-highlights-content-thumbnails">
-                <div class="section-highlights-content-thumbnail" style="border-radius: 5px; width: 100%; height: 100%; background-image: url(static/images/projects/siluro-cachirulo/0-main-menu.jpeg);" ></div>
-                <div class="section-highlights-content-thumbnail" style="border-radius: 5px; width: 100%; height: 100%; background-image: url(static/images/projects/siluro-cachirulo/2-instructions.jpeg);" ></div>
-                <div class="section-highlights-content-thumbnail" style="border-radius: 5px; width: 100%; height: 100%; background-image: url(static/images/projects/siluro-cachirulo/4-game-streak.jpeg);" ></div>
-                <div class="section-highlights-content-thumbnail" style="border-radius: 5px; width: 100%; height: 100%; background-image: url(static/images/projects/siluro-cachirulo/5-dead-screen.jpeg);" ></div>
-            </div>
-            <h4>Siluro Cachirulo is a 2D pixelart rythm game featuring a silly catfish who loves exploding bubble wrap!</h4>
-            <h4><img src="https://img.itch.zone/aW1nLzE5NTM2NzY3LmdpZg==/original/hWhHNT.gif"> Features&nbsp;<img src="https://img.itch.zone/aW1nLzE5NTM2NzU5LmdpZg==/original/%2BkYG5T.gif"></h4>
-            <ul><li>A silly catfish in a cute and colorful pixelart artstyle!</li><li>A soundtrack completely made ONLY with beatbox!<em> (and a phone mic lol)</em></li></ul>
-            <p>This game was made for the&nbsp;<a href="https://itch.io/jam/ggj-teruel-2025">Global Game Jam</a>&nbsp;in Teruel in <strong>48 HOURS!</strong></p>
-            <p>The GGJ is&nbsp;a worldwide jam where many countries participate. The theme was "BUBBLE", and we had little extra challenges! Those are doing the game with the next constraints:</p>
-            <ul><li>ONLY in&nbsp;<strong>pixelart, 256px&nbsp;</strong>size max.
-            </li><li>All sounds must be made by using&nbsp;<strong>beatbox (and a phone lmao)</strong></li><li>Be&nbsp;<strong>playable with one hand</strong>
-            </li><li>Represent&nbsp;<strong>Aragón, the place where we are participating from</strong>!</li></ul>
-            <h4>Credits:</h4>
-            <table><tbody><tr><td>Coordinators</td><td>All the team!<br></td></tr><tr><td>Programming</td><td><a href="https://dedethedevelope.itch.io/">Dede</a>, <a href="https://ukibs.itch.io/">ukibs</a><br></td></tr><tr><td>Art and Design team<br></td><td><a href="https://diadantist.itch.io/">Diadantist</a></td></tr><tr><td>Music<br></td><td><a href="https://itch.io/profile/saltasoles">Saltasoles</a></td></tr><tr><td>Beta Testing<br></td><td>All the people who participated in this gamejam and got sick while developing their games :( *<br></td></tr></tbody></table>
-            <p><em>&nbsp;<img style="max-width: 100%; vertical-align: middle; font-size: 14px; height: auto !important;" src="https://img.itch.zone/aW1nLzE5NTM2ODY1LnBuZw==/original/MNvVbA.png">&nbsp;&nbsp;<strong>We higly recommend you to play this game using headphones!</strong>&nbsp;&nbsp;<img style="max-width: 100%; vertical-align: middle; font-size: 14px; height: auto !important;" src="https://img.itch.zone/aW1nLzE5NTM2ODYzLnBuZw==/original/cCQr9i.png"></em></p>
-            <p><em>* No silly catfishes nor bubble wraps</em><em> were harmed in the production of this game</em><em>.</em><br></p>
-        </div>
-    </section>
-    <!-- <section class="section-projects">
-        <h1>Projects</h1>
-        <div class="projects-entry">
+        </section>
+        <!-- <section class="section-projects">
+            <h1>Projects</h1>
+            <div class="projects-entry">
 
-        </div>
-    </section> -->
-    <section class="section-socials">
-        <h1>Let's connect!</h1>
-        <div class="section-socials-content">
-            <div class="entry" style="background-image: url(static/images/thumbnail_itchio.jpg);">
-                <div class="entry-background"></div>
-                <a href="https://dedethedevelope.itch.io/" target="_blank" class="entry-foreground entry-link entry-enabled">
-                    <h3>Itch.io</h3>
-                </a>
             </div>
-            <div class="entry" style="background-image: url(static/images/thumbnail_instagram.jpg);">
-                <div class="entry-background"></div>
-                <a href="https://www.instagram.com/dede_makes_things/" target="_blank" class="entry-foreground entry-link entry-enabled">
-                    <h3>Instagram</h3>
-                </a>
+        </section> -->
+        <section class="section-socials">
+            <h1>Let's connect!</h1>
+            <div class="section-socials-content">
+                <div class="entry" style="background-image: url(static/images/thumbnail_itchio.jpg);">
+                    <div class="entry-background"></div>
+                    <a href="https://dedethedevelope.itch.io/" target="_blank" class="entry-foreground entry-link entry-enabled">
+                        <h3>Itch.io</h3>
+                    </a>
+                </div>
+                <div class="entry" style="background-image: url(static/images/thumbnail_instagram.jpg);">
+                    <div class="entry-background"></div>
+                    <a href="https://www.instagram.com/dede_makes_things/" target="_blank" class="entry-foreground entry-link entry-enabled">
+                        <h3>Instagram</h3>
+                    </a>
+                </div>
+                <div class="entry" style="background-image: url(static/images/thumbnail_twitch.jpg);">
+                    <div class="entry-background"></div>
+                    <a href="https://www.twitch.tv/dede_the_streamer" target="_blank" class="entry-foreground entry-link entry-enabled">
+                        <h3>Twitch</h3>
+                    </a>
+                </div>
+                <div class="entry" style="background-image: url(static/images/thumbnail_comissions.jpg);">
+                    <div class="entry-background"></div>
+                    <a target="_blank" class="entry-foreground entry-link entry-disabled">
+                        <h3>(WIP) Comissions</h3>
+                    </a>
+                </div>
+                <div class="entry" style="background-image: url(static/images/thumbnail_ko-fi.jpg);">
+                    <div class="entry-background"></div>
+                    <a target="_blank" class="entry-foreground entry-link entry-disabled">
+                        <h3>(WIP) Ko-Fi</h3>
+                    </a>
+                </div>
             </div>
-            <div class="entry" style="background-image: url(static/images/thumbnail_twitch.jpg);">
-                <div class="entry-background"></div>
-                <a href="https://www.twitch.tv/dede_the_streamer" target="_blank" class="entry-foreground entry-link entry-enabled">
-                    <h3>Twitch</h3>
-                </a>
-            </div>
-            <div class="entry" style="background-image: url(static/images/thumbnail_comissions.jpg);">
-                <div class="entry-background"></div>
-                <a target="_blank" class="entry-foreground entry-link entry-disabled">
-                    <h3>(WIP) Comissions</h3>
-                </a>
-            </div>
-            <div class="entry" style="background-image: url(static/images/thumbnail_ko-fi.jpg);">
-                <div class="entry-background"></div>
-                <a target="_blank" class="entry-foreground entry-link entry-disabled">
-                    <h3>(WIP) Ko-Fi</h3>
-                </a>
-            </div>
-        </div>
-    </section>
-
-    <div class="app-footer">
+        </section>
+    </body>
+    <footer>
         <span>Powered by Github Pages.</span>
-    </div>
-</body>
+    </footer>
 </html>
