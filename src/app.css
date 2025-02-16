@@ -1,0 +1,66 @@
+@import url('https://fonts.googleapis.com/css2?family=Darumadrop+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: "Noto Sans", serif;
+    font-weight: 400;
+    font-style: normal;
+    background-color: rgb(4, 4, 4);
+    color: white;
+}
+
+a {
+    color: rgb(190, 255, 190);
+    text-decoration: none;
+    cursor: pointer;
+}
+a:hover {
+    color: rgb(130, 243, 130);
+    text-decoration: underline;
+}
+a:visited {
+    color:rgb(61, 175, 61);
+}
+a:hover:visited {
+    color: rgb(130, 243, 130);
+}
+
+#article-prose >* {
+    margin-top: 15px;
+}
+
+#article-prose table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+#article-prose th, td {
+    border: 1px solid white;
+    padding: 10px; 
+    text-align: left;
+}
+
+#article-prose th {
+    background-color: #333;
+    color: white;
+}
+
+#article-prose td {
+    background-color: #222;
+    color: white;
+}
+
+#article-prose ul {
+	margin-left: 50px;
+}
+
+#article-prose li::marker {
+    list-style: point;
+	font-size: 1.3em;
+    color: white;
+}
