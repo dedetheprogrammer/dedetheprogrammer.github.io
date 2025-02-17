@@ -1,5 +1,6 @@
 <script lang="ts">
     export let data;
+    import { goto } from '$app/navigation';
 </script>
 
 <style>
@@ -97,11 +98,15 @@
 
     .highlights-entry {
         width: 100%;
-        background-color: rgb(16, 17, 19);
+        background-color: rgb(35, 36, 39);
         border-radius: 10px;
         overflow: hidden;
         display: flex;
         flex-direction: column;
+        cursor: pointer;
+    }
+    .highlights-entry:hover {
+        background-color: rgb(41, 42, 46);
     }
     .highlights-entry-cover {
         width: 100%;
@@ -117,6 +122,10 @@
         flex-direction: column;
         gap: 15px;
     }
+    .highlights-entry-description h2 {
+        color: rgb(203, 231, 167);
+    }
+
     /*
     #featured {
         width: 100%;
@@ -241,6 +250,12 @@
         border-radius: 8px;
     }
     */
+    @media (max-width: 720px) {
+        :root {
+            --socials-n-entries: 2;
+        }
+
+    }
 
 </style>
 
@@ -275,11 +290,13 @@
     </section>
     <section>
         <h1>Highlights!</h1>
+        <!-- svelte-ignore a11y_no_static_element_interactions -->
         {#each data.highlights as post}
-            <div class="highlights-entry">
+            <!-- svelte-ignore a11y_click_events_have_key_events -->
+            <div class="highlights-entry" on:click={() => goto(`/${post.slug}`)}>
                 <div class="highlights-entry-cover" style:background-image="url({post.cover})"></div>
                 <div class="highlights-entry-description">
-                    <h2><a href="/{post.slug}">{post.title}</a></h2>
+                    <h2>{post.title}</h2>
                     <p>{post.description}</p>
                 </div>
             </div>

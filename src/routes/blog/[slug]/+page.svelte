@@ -17,12 +17,12 @@
         width: min(90%, 800px);
 		min-width: 300px;
         max-width: 100%;
-		margin: 0 auto 30px auto;
-        padding: 100px clamp(10px, 5vw, 20px) 200px clamp(10px, 5vw, 20px);
+		margin: 0 auto 0 auto;
+        padding: 100px clamp(10px, 5vw, 20px) 100px clamp(10px, 5vw, 20px);
 	}
 
 	article {
-		margin-bottom: 40px;
+		margin-bottom: 0px;
 	}
 
 	#article-title {
@@ -80,7 +80,7 @@
 		<div id="article-cover" style:background-image="url({data.meta.cover})"></div>
 		<div id="article-tags">
 			{#each data.meta.tags as tag}
-				<span class="article-tags-tag" style="background-color:{tagBgColor(tag, '#111111')}; color:{tagFgColor(tag, '#ffffff')}" >{tag}</span>
+				<span class="article-tags-tag" style="background-color:{tagBgColor(tag, '#222222')}; color:{tagFgColor(tag, '#ffffff')}" >{tag}</span>
 			{/each}
 		</div>
 		<div id="article-prose" bind:this={articleProseRef}>

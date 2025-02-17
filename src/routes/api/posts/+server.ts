@@ -19,7 +19,6 @@ async function getPosts() {
             post.tags  = post.tags.sort()
             post.published && posts.push(post)
 		}
-        console.log(slug)
 	}
     // Ordenar los posts por fecha de modificación descendente
     posts.sort((a, b) => {
